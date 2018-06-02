@@ -53,7 +53,6 @@ class Weather:
 
         data = urllib.request.urlopen(api_url).read().decode('utf8')
         data_json = json.loads(data)
-
         parsed_json = data_json['response']['body']['items']['item']
 
         target_date = parsed_json[0]['fcstDate']  # get date and time
@@ -159,10 +158,7 @@ class Weather:
                 from app import fb
                 fb.update_weather(self.get_json_data())
                 print("weather data updated at "+str(dt.hour)+"h "+str(dt.minute)+"m "+str(dt.second)+"s")
-                time.sleep(1800)
+                time.sleep(600)
             except:
-                print("bb")
+                print("get_weather_data_thread")
                 break
-
-    def get_weather(self):
-        return self.data

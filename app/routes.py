@@ -1,11 +1,13 @@
-
+from werkzeug.datastructures import ImmutableMultiDict
 from flask import render_template, request, send_file, abort, Markup, jsonify
-from app import app, n, w, User
+from app import app, n, w, User, fb
 import os
+import datetime
 
-PROFILE_FOLDER = os.path.join('static', 'Image')
-app.config['UPLOAD_FOLDER'] = PROFILE_FOLDER
-
+IMAGE_FOLDER = os.path.join('Files', 'Image')
+AUDIO_FOLDER = os.path.join('Files', 'Audio')
+app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
+app.config['AUDIO_FOLDER'] = AUDIO_FOLDER
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -85,16 +87,65 @@ def login():
     return jsonify(user.getStr())
 
 
-@app.route('/get_image.jpg', methods=['GET', 'POST'])
+@app.route('/profileImage.jpg', methods=['GET', 'POST'])
 def send_image():
     file_name = request.args.get('fileName')
     if file_name is not None:
         try:
-            full_filename = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
+            full_filename = os.path.join(app.config['IMAGE_FOLDER'], file_name)
+            print('send profile')
             return send_file(full_filename, as_attachment=True)
         except Exception as e:
-            full_filename = os.path.join(app.config['UPLOAD_FOLDER'], '1.jpg')
+            full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
+            print('send 1')
             return render_template("image.html", user_image=full_filename)
     else:
-        full_filename = os.path.join(app.config['UPLOAD_FOLDER'], '1.jpg')
+        print('send 1')
+        full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
         return render_template("image.html", user_image=full_filename)
+
+'''
+@app.route("/sendImage", methods=['POST'])
+def receieve_image():
+    uid = request.values.get('uid')
+    file = request.files.get('Image')
+    file_ext = os.path.splitext(file.filename)[1]
+    file_name = datetime.datetime.now().strftime('%Y%m%d_%H-%M-%S') + file_ext
+
+    try:
+        file_dir = os.path.join(app.config['IMAGE_FOLDER'], uid)
+        if not os.path.isdir(file_dir):
+            os.makedirs(file_dir)
+    except Exception as e:
+        print(e)
+    finally:
+        file.save(file_dir +'//'+file_name)
+        image_url = {
+            'url':file_name
+        }
+        fb.update_image(uid, image_url)
+
+    return jsonify('test')
+'''
+
+@app.route("/sendImage", methods=['POST'])
+def sendProfileUrl():
+    uid = request.values.get('uid')
+    file = request.files.get('Image')
+    file_ext = os.path.splitext(file.filename)[1]
+    file_name = datetime.datetime.now().strftime('%Y%m%d_%H-%M-%S') + file_ext
+
+    try:
+        file_dir = os.path.join(app.config['IMAGE_FOLDER'], uid)
+        if not os.path.isdir(file_dir):
+            os.makedirs(file_dir)
+    except Exception as e:
+        print(e)
+    finally:
+        file.save(file_dir +'//'+file_name)
+        image_url = {
+            'url':file_name
+        }
+        fb.update_image(uid, image_url)
+
+    return jsonify('test')

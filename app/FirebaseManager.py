@@ -11,9 +11,16 @@ class FirebaseManager:
             'databaseURL' : 'https://smartmirror-75b89.firebaseio.com'
         })
         self.root = db.reference()
-        self.new_weather = self.root.child('weather')
+        self.weather = self.root.child('weather')
+        self.image = self.root.child('image')
 
 
     def update_weather(self, weather_data):
-        self.new_weather.update(weather_data)
+        self.weather.update(weather_data)
 
+    def get_weather(self):
+        weather_data = db.reference('weather'.format(self.weather.key)).get()
+        print(weather_data['cur_sky'], weather_data['cur_tem'], weather_data['max_tem'], weather_data['min_tem'])
+
+    def update_image(self, uid, image_url):
+        self.image.child(uid).update(image_url)
