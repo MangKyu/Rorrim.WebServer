@@ -90,20 +90,23 @@ def login():
 @app.route('/profileImage.jpg', methods=['GET', 'POST'])
 def send_image():
     file_name = request.args.get('fileName')
+    profile_name = fb.get_profile_name(file_name)
     if file_name is not None:
         try:
             full_filename = os.path.join(app.config['IMAGE_FOLDER'], file_name)
-            print('send profile')
+            full_filename = os.path.join(full_filename, profile_name.get('url'))
+            print('send profile' + full_filename)
+            ##return render_template("image.html", user_image=full_filename)
             return send_file(full_filename, as_attachment=True)
         except Exception as e:
             full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
             print('send 1')
+            print(e)
             return render_template("image.html", user_image=full_filename)
     else:
         print('send 1')
         full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
         return render_template("image.html", user_image=full_filename)
-
 '''
 @app.route("/sendImage", methods=['POST'])
 def receieve_image():
