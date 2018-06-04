@@ -14,7 +14,6 @@ class FirebaseManager:
         self.weather = self.root.child('weather')
         self.image = self.root.child('image')
 
-
     def update_weather(self, weather_data):
         self.weather.update(weather_data)
 

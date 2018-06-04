@@ -12,7 +12,7 @@ class News:
         self.deleteLater()
 
     def get_list_urls(self):
-        urls = {};
+        urls = {}
 
         url = "http://m.news.naver.com"
         url_main = "/rankingList.nhn"

@@ -1,6 +1,5 @@
-from werkzeug.datastructures import ImmutableMultiDict
 from flask import render_template, request, send_file, abort, Markup, jsonify
-from app import app, n, w, User, fb
+from app import app, n, w, fb,face_classification
 import os
 import datetime
 
@@ -8,6 +7,8 @@ IMAGE_FOLDER = os.path.join('Files', 'Image')
 AUDIO_FOLDER = os.path.join('Files', 'Audio')
 app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
 app.config['AUDIO_FOLDER'] = AUDIO_FOLDER
+
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -26,6 +27,7 @@ def get_json():
 
     return jsonify(data)
 
+
 @app.route('/recieve_file', methods=['GET','POST'])
 def get_file():
     file_name = request.args.get('fileName')
@@ -36,6 +38,7 @@ def get_file():
             abort(400)
     else:
         abort(400)
+
 
 @app.route('/get_news', methods=['GET', 'POST'])
 def get_news():
@@ -56,6 +59,7 @@ def get_news():
         except Exception as e:
             abort(400)
 
+
 @app.route('/get_weather', methods=['GET','POST'])
 def get_weather():
     info = w.get_weather()
@@ -63,28 +67,6 @@ def get_weather():
     for i in info.keys():
         ret = ret + "<" + str(i) + ">" + str(info[i]) + "</" + str(i) + ">"
     return Markup(ret)
-    #return json.dumps(info, ensure_ascii=False)
-
-'''
-@app.route('/recieve_image', methods = ['GET', 'POST'])
-def send_image():
-    file_name = request.args.get('fileName')
-    if file_name is not None:
-        try:
-            full_filename = os.path.join(app.config['UPLOAD_FOLDER'], file_name)
-            return render_template("image.html", user_image=full_filename)
-        except Exception as e:
-            abort(411)
-    else:
-        full_filename = os.path.join(app.config['UPLOAD_FOLDER'], '1.jpg')
-        return render_template("image.html", user_image=full_filename)
-'''
-
-@app.route('/login', methods = ['POST'])
-def login():
-    data = request.get_json()
-    user = User.User(data['id'], data['pw'], data['money'])
-    return jsonify(user.getStr())
 
 
 @app.route('/profileImage.jpg', methods=['GET', 'POST'])
@@ -106,20 +88,37 @@ def send_image():
         full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
         return render_template("image.html", user_image=full_filename)
 
+
 @app.route("/sendAlarmStatus", methods=['GET'])
-def sendAlarmStatis():
-    activity_name= request.args.get('activityName')
+def send_alarm_status():
+    activity_name = request.args.get('activityName')
     is_checked = request.args.get('isChecked')
     alarm_dict={
         activity_name: is_checked
     }
     print('Send Status Alarm')
-    #send data to pi
+    ############################ send alarm data to pi
     return True
 
 
+@app.route("/login", methods=['GET'])
+def login():
+    login_flag = False
+
+    uid = request.args.get('uid')
+    profile_name = fb.get_profile_name(uid)
+    if profile_name is not None:
+        try:
+            full_filename = os.path.join(app.config['IMAGE_FOLDER'], uid, profile_name)
+            login_flag = face_classification.login(uid, full_filename)
+        except Exception as e:
+            print(e)
+    print(login_flag)
+    ########################### send login flag to PI
+
+
 @app.route("/sendImage", methods=['POST'])
-def sendProfileUrl():
+def save_image():
     uid = request.values.get('uid')
     file = request.files.get('Image')
     file_ext = os.path.splitext(file.filename)[1]

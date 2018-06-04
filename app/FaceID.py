@@ -65,15 +65,12 @@ from tensorflow.python.platform import gfile
 from tensorflow.python.util import compat
 
 
-
 class FaceID:
     def __init__(self):
         self.user_folder = 'smartmirror_user'
         self.photo_path = os.path.join(self.user_folder, 'user_photos')
         self.graph_path = os.path.join(self.user_folder, 'output_graph.pb')  # 읽어들일 graph 파일 경로
         self.label_path = os.path.join(self.user_folder, 'output_labels.txt')  # 읽어들일 labels 파일 경로
-
-
 
         # 모든 파라미터들은 특정한 모델 architecture와 묶여(tied) 있다..
         self.FLAGS = None
@@ -203,7 +200,7 @@ class FaceID:
           File system path string to an image that meets the requested parameters.
         """
         return self.get_image_path(image_lists, label_name, index, bottleneck_dir,
-                              category) + '.txt'
+                                   category) + '.txt'
 
     def create_inception_graph(self):
         """"Creates a graph from saved GraphDef file and returns a Graph object.
@@ -304,7 +301,7 @@ class FaceID:
         """Create a single bottleneck file."""
         print('Creating bottleneck at ' + bottleneck_path)
         image_path = self.get_image_path(image_lists, label_name, index,
-                                    image_dir, category)
+                                         image_dir, category)
         if not gfile.Exists(image_path):
             tf.logging.fatal('File does not exist %s', image_path)
         image_data = gfile.FastGFile(image_path, 'rb').read()
@@ -345,11 +342,11 @@ class FaceID:
         sub_dir_path = os.path.join(bottleneck_dir, sub_dir)
         self.ensure_dir_exists(sub_dir_path)
         bottleneck_path = self.get_bottleneck_path(image_lists, label_name, index,
-                                              bottleneck_dir, category)
+                                                   bottleneck_dir, category)
         if not os.path.exists(bottleneck_path):
             self.create_bottleneck_file(bottleneck_path, image_lists, label_name, index,
-                                   image_dir, category, sess, jpeg_data_tensor,
-                                   bottleneck_tensor)
+                                        image_dir, category, sess, jpeg_data_tensor,
+                                        bottleneck_tensor)
         with open(bottleneck_path, 'r') as bottleneck_file:
             bottleneck_string = bottleneck_file.read()
         did_hit_error = False
@@ -360,8 +357,8 @@ class FaceID:
             did_hit_error = True
         if did_hit_error:
             self.create_bottleneck_file(bottleneck_path, image_lists, label_name, index,
-                                   image_dir, category, sess, jpeg_data_tensor,
-                                   bottleneck_tensor)
+                                        image_dir, category, sess, jpeg_data_tensor,
+                                        bottleneck_tensor)
             with open(bottleneck_path, 'r') as bottleneck_file:
                 bottleneck_string = bottleneck_file.read()
             # Allow exceptions to propagate here, since they shouldn't happen after a
@@ -396,8 +393,8 @@ class FaceID:
                 category_list = label_lists[category]
                 for index, unused_base_name in enumerate(category_list):
                     self.get_or_create_bottleneck(sess, image_lists, label_name, index,
-                                             image_dir, category, bottleneck_dir,
-                                             jpeg_data_tensor, bottleneck_tensor)
+                                                  image_dir, category, bottleneck_dir,
+                                                  jpeg_data_tensor, bottleneck_tensor)
 
                     how_many_bottlenecks += 1
                     if how_many_bottlenecks % 100 == 0:
@@ -437,11 +434,11 @@ class FaceID:
                 label_name = list(image_lists.keys())[label_index]
                 image_index = random.randrange(self.MAX_NUM_IMAGES_PER_CLASS + 1)
                 image_name = self.get_image_path(image_lists, label_name, image_index,
-                                            image_dir, category)
+                                                 image_dir, category)
                 bottleneck = self.get_or_create_bottleneck(sess, image_lists, label_name,
-                                                      image_index, image_dir, category,
-                                                      bottleneck_dir, jpeg_data_tensor,
-                                                      bottleneck_tensor)
+                                                           image_index, image_dir, category,
+                                                           bottleneck_dir, jpeg_data_tensor,
+                                                           bottleneck_tensor)
                 ground_truth = np.zeros(class_count, dtype=np.float32)
                 ground_truth[label_index] = 1.0
                 bottlenecks.append(bottleneck)
@@ -453,11 +450,11 @@ class FaceID:
                 for image_index, image_name in enumerate(
                         image_lists[label_name][category]):
                     image_name = self.get_image_path(image_lists, label_name, image_index,
-                                                image_dir, category)
+                                                     image_dir, category)
                     bottleneck = self.get_or_create_bottleneck(sess, image_lists, label_name,
-                                                          image_index, image_dir, category,
-                                                          bottleneck_dir, jpeg_data_tensor,
-                                                          bottleneck_tensor)
+                                                               image_index, image_dir, category,
+                                                               bottleneck_dir, jpeg_data_tensor,
+                                                               bottleneck_tensor)
                     ground_truth = np.zeros(class_count, dtype=np.float32)
                     ground_truth[label_index] = 1.0
                     bottlenecks.append(bottleneck)
@@ -466,8 +463,8 @@ class FaceID:
         return bottlenecks, ground_truths, filenames
 
     def get_random_distorted_bottlenecks(self,
-            sess, image_lists, how_many, category, image_dir, input_jpeg_tensor,
-            distorted_image, resized_input_tensor, bottleneck_tensor):
+                                         sess, image_lists, how_many, category, image_dir, input_jpeg_tensor,
+                                         distorted_image, resized_input_tensor, bottleneck_tensor):
         """Retrieves bottleneck values for training images, after distortions.
         If we're training with distortions like crops, scales, or flips, we have to
         recalculate the full model for every image, and so we can't use cached
@@ -497,7 +494,7 @@ class FaceID:
             label_name = list(image_lists.keys())[label_index]
             image_index = random.randrange(self.MAX_NUM_IMAGES_PER_CLASS + 1)
             image_path = self.get_image_path(image_lists, label_name, image_index, image_dir,
-                                        category)
+                                             category)
             if not gfile.Exists(image_path):
                 tf.logging.fatal('File does not exist %s', image_path)
             jpeg_data = gfile.FastGFile(image_path, 'rb').read()
@@ -507,8 +504,8 @@ class FaceID:
             distorted_image_data = sess.run(distorted_image,
                                             {input_jpeg_tensor: jpeg_data})
             bottleneck = self.run_bottleneck_on_image(sess, distorted_image_data,
-                                                 resized_input_tensor,
-                                                 bottleneck_tensor)
+                                                      resized_input_tensor,
+                                                      bottleneck_tensor)
             ground_truth = np.zeros(class_count, dtype=np.float32)
             ground_truth[label_index] = 1.0
             bottlenecks.append(bottleneck)
@@ -702,7 +699,7 @@ class FaceID:
         return evaluation_step, prediction
 
     def start_training(self):
-        #tf.app.run(main=self.main, argv=[sys.argv[0]] + self.unparsed)
+        # tf.app.run(main=self.main, argv=[sys.argv[0]] + self.unparsed)
         # TensorBoard의 summaries를 write할 directory를 설정한다.
         if tf.gfile.Exists(self.FLAGS.summaries_dir):
             tf.gfile.DeleteRecursively(self.FLAGS.summaries_dir)
@@ -743,13 +740,13 @@ class FaceID:
                 # 이를 disk에 캐싱(caching)할 것이다.
                 self.cache_bottlenecks(sess, image_lists, self.FLAGS.image_dir,
                                        self.FLAGS.bottleneck_dir, jpeg_data_tensor,
-                                  bottleneck_tensor)
+                                       bottleneck_tensor)
 
             # 우리가 학습시킬(training) 새로운 layer를 추가한다.
             (train_step, cross_entropy, bottleneck_input, ground_truth_input,
              final_tensor) = self.add_final_training_ops(len(image_lists.keys()),
                                                          self.FLAGS.final_tensor_name,
-                                                    bottleneck_tensor)
+                                                         bottleneck_tensor)
 
             # 우리의 새로운 layer의 정확도를 평가(evalute)하기 위한 새로운 operation들을 생성한다.
             evaluation_step, prediction = self.add_evaluation_step(
@@ -823,9 +820,9 @@ class FaceID:
             # 따라서 이전에 보지 못했던 이미지를 통해 마지막 test 평가(evalution)을 진행한다.
             test_bottlenecks, test_ground_truth, test_filenames = (
                 self.get_random_cached_bottlenecks(sess, image_lists, self.FLAGS.test_batch_size,
-                                              'testing', self.FLAGS.bottleneck_dir,
+                                                   'testing', self.FLAGS.bottleneck_dir,
                                                    self.FLAGS.image_dir, jpeg_data_tensor,
-                                              bottleneck_tensor))
+                                                   bottleneck_tensor))
             test_accuracy, predictions = sess.run(
                 [evaluation_step, prediction],
                 feed_dict={bottleneck_input: test_bottlenecks,
@@ -857,7 +854,7 @@ class FaceID:
             help='Path to folders of labeled images.'
         )
         parser.add_argument(
-        '--output_graph',
+            '--output_graph',
             type=str,
             default=self.graph_path,
             help='Where to save the trained graph.'
@@ -1002,7 +999,7 @@ class FaceID:
             """
         )
         self.FLAGS = parser.parse_known_args()
-        #self.FLAGS, self.unparsed = parser.parse_known_args()
+        # self.FLAGS, self.unparsed = parser.parse_known_args()
 
     def create_graph(self):
         """저장된(saved) GraphDef 파일로부터 graph를 생성하고 saver를 반환한다."""
@@ -1042,3 +1039,12 @@ class FaceID:
 
             uid, accuracy = labels[top_k[0]], predictions[top_k[0]]
             return uid, accuracy
+
+    def login(self, uid, file_name):
+        # file_name = 'test.jpg'
+        # uid = 'lion'
+        uid_label, accuracy = self.get_accrucy(file_name)
+        if uid_label.__contains__(uid) and accuracy >= 0.9:
+            return True
+        else:
+            return False
