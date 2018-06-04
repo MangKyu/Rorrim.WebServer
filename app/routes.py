@@ -89,14 +89,12 @@ def login():
 
 @app.route('/profileImage.jpg', methods=['GET', 'POST'])
 def send_image():
-    file_name = request.args.get('fileName')
-    profile_name = fb.get_profile_name(file_name)
-    if file_name is not None:
+    uid = request.args.get('fileName')
+    profile_name = fb.get_profile_name(uid)
+    if profile_name is not None:
         try:
-            full_filename = os.path.join(app.config['IMAGE_FOLDER'], file_name)
-            full_filename = os.path.join(full_filename, profile_name.get('url'))
+            full_filename = os.path.join(app.config['IMAGE_FOLDER'], uid, profile_name)
             print('send profile' + full_filename)
-            ##return render_template("image.html", user_image=full_filename)
             return send_file(full_filename, as_attachment=True)
         except Exception as e:
             full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
@@ -107,29 +105,18 @@ def send_image():
         print('send 1')
         full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
         return render_template("image.html", user_image=full_filename)
-'''
-@app.route("/sendImage", methods=['POST'])
-def receieve_image():
-    uid = request.values.get('uid')
-    file = request.files.get('Image')
-    file_ext = os.path.splitext(file.filename)[1]
-    file_name = datetime.datetime.now().strftime('%Y%m%d_%H-%M-%S') + file_ext
 
-    try:
-        file_dir = os.path.join(app.config['IMAGE_FOLDER'], uid)
-        if not os.path.isdir(file_dir):
-            os.makedirs(file_dir)
-    except Exception as e:
-        print(e)
-    finally:
-        file.save(file_dir +'//'+file_name)
-        image_url = {
-            'url':file_name
-        }
-        fb.update_image(uid, image_url)
+@app.route("/sendAlarmStatus", methods=['GET'])
+def sendAlarmStatis():
+    activity_name= request.args.get('activityName')
+    is_checked = request.args.get('isChecked')
+    alarm_dict={
+        activity_name: is_checked
+    }
+    print('Send Status Alarm')
+    #send data to pi
+    return True
 
-    return jsonify('test')
-'''
 
 @app.route("/sendImage", methods=['POST'])
 def sendProfileUrl():

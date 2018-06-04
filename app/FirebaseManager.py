@@ -26,4 +26,4 @@ class FirebaseManager:
         self.image.child(uid).update(image_url)
 
     def get_profile_name(self, uid):
-        return self.image.child(uid).get()
+        return self.image.child(uid).child('url').get()
