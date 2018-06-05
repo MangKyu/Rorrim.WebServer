@@ -106,8 +106,9 @@ def send_image():
         full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
         return render_template("image.html", user_image=full_filename)
 
+
 @app.route("/sendAlarmStatus", methods=['GET'])
-def sendAlarmStatis():
+def sendAlarmStatus():
     activity_name= request.args.get('activityName')
     is_checked = request.args.get('isChecked')
     alarm_dict={
@@ -115,7 +116,15 @@ def sendAlarmStatis():
     }
     print('Send Status Alarm')
     #send data to pi
-    return True
+    return 'True'
+
+
+@app.route("/sendCategory", methods=['GET'])
+def recieveCategory():
+    uid = request.args.get('uid')
+    category_name = request.args.get('category')
+    print(category_name)
+    return "True"
 
 
 @app.route("/sendImage", methods=['POST'])
