@@ -8,11 +8,8 @@ class News:
     def __init__(self):
         self.news = {}
 
-    def closeEvent(self, event):
-        self.deleteLater()
-
     def get_list_urls(self):
-        urls = {};
+        urls = {}
 
         url = "http://m.news.naver.com"
         url_main = "/rankingList.nhn"
@@ -113,12 +110,12 @@ class News:
         body = link.text
         body = body.replace("\n", "").replace("\t", "")
 
-        self.news[index].append([title,body])
+        self.news[index].append([title, body])
 
         return [title, body]
 
     def do_crawling(self):
-        while(True):
+        while True:
             try:
                 start_time = time.time()
                 list_urls = self.get_list_urls()
@@ -133,8 +130,11 @@ class News:
                         self.get_news(j, i)
 
                 dt = datetime.datetime.now()
-                print("news crawling has finished at "+str(dt.hour)+"h "+str(dt.minute)+"m "+str(dt.second)+"s")
+                print("news crawling has finished at " + str(dt.hour) + "h " + str(dt.minute) + "m " + str(
+                    dt.second) + "s")
                 print("the time taken is " + str(time.time() - start_time) + " seconds.")
+                from app import fb
+                fb.update_news(self.news)
                 time.sleep(3600)
             except:
                 break

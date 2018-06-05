@@ -13,7 +13,7 @@ class FirebaseManager:
         self.root = db.reference()
         self.weather = self.root.child('weather')
         self.image = self.root.child('image')
-
+        self.news = self.root.child('news')
 
     def update_weather(self, weather_data):
         self.weather.update(weather_data)
@@ -27,3 +27,6 @@ class FirebaseManager:
 
     def get_profile_name(self, uid):
         return self.image.child(uid).child('url').get()
+
+    def update_news(self, news_data):
+        self.news.update(news_data)
