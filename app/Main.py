@@ -11,6 +11,7 @@ if __name__ == '__main__':
     # face_classification.start_training()
     app.run(host='203.252.166.206', debug=True, use_reloader=False)#, port=5000)
     #app.run(host='192.168.0.126', debug=True, use_reloader=False)#, port=5000)
+    #app.run(host='172.16.31.224', debug=True, use_reloader=False)#, port=5000)
 
 # suggested way
 '''

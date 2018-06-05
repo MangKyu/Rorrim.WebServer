@@ -138,3 +138,11 @@ def save_image():
         fb.update_image(uid, image_url)
 
     return jsonify('test')
+
+@app.route("/getPath", methods=['GET'])
+def send_path():
+    startX = request.args.get('startX')
+    startY = request.args.get('startY')
+    endX = request.args.get('endX')
+    endY = request.args.get('endY')
+    return render_template('path.html',startX=startX, startY=startY, endX=endX, endY=endY)
