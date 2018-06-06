@@ -37,3 +37,10 @@ class FirebaseManager:
 
     def update_category(self, uid, category_dict):
         self.status.child(uid).update(category_dict)
+
+    def update_location(self, uid, location_dict):
+        self.status.child(uid).update(location_dict)
+
+    def get_user_list(self, mirror_uid):
+        user_list = self.root.child(mirror_uid).get().keys()
+        return list(user_list)

@@ -89,8 +89,8 @@ def send_image():
         return render_template("image.html", user_image=full_filename)
 
 
-@app.route("/sendAlarmStatus", methods=['GET'])
-def send_alarm_status():
+@app.route("/sendSwitchStatus", methods=['GET'])
+def send_switch_status():
     uid = request.args.get('uid')
     activity_name = request.args.get('activityName').split('.')
     is_checked = request.args.get('isChecked')
@@ -160,5 +160,7 @@ def send_path():
 def recieveLocation():
     uid = request.args.get('uid')
     location = request.args.get('location')
+    category_dict = {"location": location}
+    fb.update_location(uid, category_dict)
     print(location)
     return "True"
