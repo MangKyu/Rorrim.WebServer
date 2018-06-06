@@ -14,6 +14,7 @@ class FirebaseManager:
         self.weather = self.root.child('weather')
         self.image = self.root.child('image')
         self.news = self.root.child('news')
+        self.status = self.root.child('status')
 
     def update_weather(self, weather_data):
         self.weather.update(weather_data)
@@ -30,3 +31,9 @@ class FirebaseManager:
 
     def update_news(self, news_data):
         self.news.update(news_data)
+
+    def update_switch(self, uid, alarm_dict):
+        self.status.child(uid).update(alarm_dict)
+
+    def update_category(self, uid, category_dict):
+        self.status.child(uid).update(category_dict)

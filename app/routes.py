@@ -90,23 +90,24 @@ def send_image():
 
 
 @app.route("/sendAlarmStatus", methods=['GET'])
-
 def send_alarm_status():
-    activity_name = request.args.get('activityName')
+    uid = request.args.get('uid')
+    activity_name = request.args.get('activityName').split('.')
     is_checked = request.args.get('isChecked')
-    alarm_dict={
-        activity_name: is_checked
+    alarm_dict = {
+        activity_name[1]: is_checked
     }
-    print('Send Status Alarm')
-    #send data to pi
+    fb.update_switch(uid, alarm_dict)
+    ###send Data to PI
     return 'True'
 
 
 @app.route("/sendCategory", methods=['GET'])
 def recieveCategory():
     uid = request.args.get('uid')
-    category_name = request.args.get('category')
-    print(category_name)
+    category = request.args.get('category')
+    category_dict = {"category": category}
+    fb.update_category(uid, category_dict)
     return "True"
 
 @app.route("/login", methods=['GET'])
@@ -154,3 +155,10 @@ def send_path():
     endX = request.args.get('endX')
     endY = request.args.get('endY')
     return render_template('path.html',startX=startX, startY=startY, endX=endX, endY=endY)
+
+@app.route("/sendLocation", methods=['GET', 'POST'])
+def recieveLocation():
+    uid = request.args.get('uid')
+    location = request.args.get('location')
+    print(location)
+    return "True"
