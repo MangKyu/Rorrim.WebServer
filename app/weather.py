@@ -8,11 +8,9 @@ import time
 
 class Weather:
 
-    def __init__(self):
+    def __init__(self):#, mirror_list):
         self.data = {}
-
-    def closeEvent(self, event):
-        self.deleteLater()
+        #self.mirror_list = mirror_list
 
     def get_api_date(self):
         date_now = datetime.datetime.now(tz=pytz.timezone('Asia/Seoul')).strftime('%Y%m%d')
@@ -128,9 +126,16 @@ class Weather:
             try:
                 self.data = self.get_weather_data
                 dt = datetime.datetime.now()
+                weather_data = self.get_json_data()
+
                 from app import fb
-                fb.update_weather(self.get_json_data())
+                fb.update_weather(weather_data)
                 print("weather data updated at " + str(dt.hour) + "h " + str(dt.minute) + "m " + str(dt.second) + "s")
+
+                from app import connector
+                msg_dict = connector.create_dict('/WEATHER', weather_data)
+                connector.send_msg_to_all(msg_dict)
+
                 time.sleep(600)
             except Exception as e:
                 print("get_weather_data_thread")

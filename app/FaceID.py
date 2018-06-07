@@ -67,10 +67,6 @@ from tensorflow.python.util import compat
 
 class FaceID:
     def __init__(self):
-        self.user_folder = 'smartmirror_user'
-        self.photo_path = os.path.join(self.user_folder, 'user_photos')
-        self.graph_path = os.path.join(self.user_folder, 'output_graph.pb')  # 읽어들일 graph 파일 경로
-        self.label_path = os.path.join(self.user_folder, 'output_labels.txt')  # 읽어들일 labels 파일 경로
 
         # 모든 파라미터들은 특정한 모델 architecture와 묶여(tied) 있다..
         self.FLAGS = None
@@ -84,7 +80,7 @@ class FaceID:
         self.RESIZED_INPUT_TENSOR_NAME = 'ResizeBilinear:0'
         self.MAX_NUM_IMAGES_PER_CLASS = 2 ** 27 - 1  # ~134M
 
-        self.init_setting()
+        #self.init_setting()
 
     def create_image_lists(self, image_dir, testing_percentage, validation_percentage):
         """file system으로부터 training 이미지들의 list를 만든다.
@@ -698,9 +694,10 @@ class FaceID:
         tf.summary.scalar('accuracy', evaluation_step)
         return evaluation_step, prediction
 
-    def start_training(self):
+    def start_training(self, mirror_uid):
         # tf.app.run(main=self.main, argv=[sys.argv[0]] + self.unparsed)
         # TensorBoard의 summaries를 write할 directory를 설정한다.
+        self.init_setting(mirror_uid)
         if tf.gfile.Exists(self.FLAGS.summaries_dir):
             tf.gfile.DeleteRecursively(self.FLAGS.summaries_dir)
         tf.gfile.MakeDirs(self.FLAGS.summaries_dir)
@@ -845,12 +842,21 @@ class FaceID:
             with gfile.FastGFile(self.FLAGS.output_labels, 'w') as f:
                 f.write('\n'.join(image_lists.keys()) + '\n')
 
-    def init_setting(self):
+    def init_setting(self, mirror_uid):
+        folder_path = os.path.join('Files', 'FaceID', mirror_uid)
+        photo_path = os.path.join(folder_path, 'user_photos')
+
+        if not os.path.isdir(photo_path):
+            os.makedirs(photo_path)
+
+        self.graph_path = os.path.join(folder_path, 'output_graph.pb')  # 읽어들일 graph 파일 경로
+        self.label_path = os.path.join(folder_path, 'output_labels.txt')  # 읽어들일 labels 파일 경로
+
         parser = argparse.ArgumentParser()
         parser.add_argument(
             '--image_dir',
             type=str,
-            default=self.photo_path,
+            default=photo_path,
             help='Path to folders of labeled images.'
         )
         parser.add_argument(
@@ -868,7 +874,7 @@ class FaceID:
         parser.add_argument(
             '--summaries_dir',
             type=str,
-            default=os.path.join(self.user_folder, 'retrain_logs'),
+            default=os.path.join(folder_path, 'retrain_logs'),
             help='Where to save summary logs for TensorBoard.'
         )
         parser.add_argument(
@@ -942,7 +948,7 @@ class FaceID:
         parser.add_argument(
             '--model_dir',
             type=str,
-            default=os.path.join(self.user_folder, 'imagenet'),
+            default=os.path.join(folder_path, 'imagenet'),
             help="""\
             Path to classify_image_graph_def.pb,
             imagenet_synset_to_human_label_map.txt, and
@@ -952,7 +958,7 @@ class FaceID:
         parser.add_argument(
             '--bottleneck_dir',
             type=str,
-            default=os.path.join(self.user_folder, 'bottleneck'),
+            default=os.path.join(folder_path, 'bottleneck'),
             help='Path to cache bottleneck layer values as files.'
         )
         parser.add_argument(
@@ -998,7 +1004,7 @@ class FaceID:
             input pixels up or down by.\
             """
         )
-        self.FLAGS = parser.parse_known_args()
+        self.FLAGS = parser.parse_known_args()[0]
         # self.FLAGS, self.unparsed = parser.parse_known_args()
 
     def create_graph(self):
@@ -1009,9 +1015,9 @@ class FaceID:
             graph_def.ParseFromString(f.read())
             _ = tf.import_graph_def(graph_def, name='')
 
-    def get_accrucy(self, file_name):
+    def get_accrucy(self, mirror_uid, file_name):
         answer = None
-        image_path = os.path.join(self.user_folder, file_name)  # 추론을 진행할 이미지 경로
+        image_path = os.path.join('Files', 'FaceID', mirror_uid, file_name)
         if not tf.gfile.Exists(image_path):
             tf.logging.fatal('File does not exist %s', image_path)
             return answer

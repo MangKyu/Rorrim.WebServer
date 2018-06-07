@@ -3,10 +3,12 @@ from bs4 import BeautifulSoup
 import time
 import datetime
 
+
 class News:
 
     def __init__(self):
         self.news = {}
+        # self.mirror_list = mirror_list
 
     def get_list_urls(self):
         urls = {}
@@ -124,7 +126,7 @@ class News:
 
                 for i in list_urls:
                     news_urls[i] = self.get_news_urls(i, list_urls)
-                    self.news[i] = [];
+                    self.news[i] = []
 
                     for j in news_urls[i]:
                         self.get_news(j, i)
@@ -133,8 +135,17 @@ class News:
                 print("news crawling has finished at " + str(dt.hour) + "h " + str(dt.minute) + "m " + str(
                     dt.second) + "s")
                 print("the time taken is " + str(time.time() - start_time) + " seconds.")
+
                 from app import fb
                 fb.update_news(self.news)
+
+                from app import connector
+                msg_dict = connector.create_dict('/NEWS', 'REQUEST NEWS')
+                connector.send_msg_to_all(msg_dict)
+                print('Send News in news.py')
+
                 time.sleep(3600)
-            except:
+            except Exception as e:
+                print(e)
                 break
+

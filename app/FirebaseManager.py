@@ -21,10 +21,10 @@ class FirebaseManager:
 
     def get_weather(self):
         weather_data = db.reference('weather'.format(self.weather.key)).get()
-        print(weather_data['cur_sky'], weather_data['cur_tem'], weather_data['max_tem'], weather_data['min_tem'])
+        return weather_data
 
     def update_image(self, uid, image_url):
-        self.image.child(uid).update(image_url)
+        self.root.child('user').child(uid).update(image_url)
 
     def get_profile_name(self, uid):
         return self.image.child(uid).child('url').get()
@@ -33,14 +33,20 @@ class FirebaseManager:
         self.news.update(news_data)
 
     def update_switch(self, uid, alarm_dict):
-        self.status.child(uid).update(alarm_dict)
+        self.root.child('user').child(uid).child('status').update(alarm_dict)
 
     def update_category(self, uid, category_dict):
-        self.status.child(uid).update(category_dict)
+        self.root.child('user').child(uid).update(category_dict)
 
     def update_location(self, uid, location_dict):
-        self.status.child(uid).update(location_dict)
+        self.root.child('user').child(uid).update(location_dict)
 
     def get_user_list(self, mirror_uid):
-        user_list = self.root.child(mirror_uid).get().keys()
+        user_list = self.root.child('rorrim').child(mirror_uid).get().keys()
         return list(user_list)
+
+    def get_category(self, uid):
+        return self.root.child('user').child(uid).child('category').get()
+
+    def get_news(self):
+        return self.news.get()

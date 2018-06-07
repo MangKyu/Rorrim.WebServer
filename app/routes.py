@@ -3,7 +3,7 @@ from app import app, n, w, fb#,face_classification
 import os
 import datetime
 
-IMAGE_FOLDER = os.path.join('Files', 'Image')
+IMAGE_FOLDER = os.path.join('Files', 'FaceID')#'smartmirror_user')
 AUDIO_FOLDER = os.path.join('Files', 'Audio')
 app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
 app.config['AUDIO_FOLDER'] = AUDIO_FOLDER
@@ -21,10 +21,8 @@ def about():
 
 @app.route('/get_json', methods=['GET'])
 def get_json():
-
     data = [{"name": "Ford", "models": ["Fiesta", "Focus", "Mustang"]}, {"name": "BMW", "models": ["320", "X3", "X5"]},
      {"name": "Fiat", "models": ["500", "Panda"]}]
-
     return jsonify(data)
 
 
@@ -42,32 +40,42 @@ def get_file():
 
 @app.route('/get_news', methods=['GET', 'POST'])
 def get_news():
-    category = request.args.get('category')
+    uid = request.values.get('uid')
+    category = fb.get_category(uid)
+    n.news = fb.get_news()
+    #category = request.args.get('category')
     if category is None:
-        abort(400)
+        category = 'world'
     else:
         try:
             if n.news[category] is None:
-                abort(400)
-            else:
-                ret = ""
-                for i in n.news[category]:
-                    ret = ret + "<news>" + "<title>" + i[0] + "</title>" + "<content>" + i[1] + "</content>" + "</news>"
-                #data = json.dumps(n.news[category], ensure_ascii=False)
-                #return data
-                return Markup(ret)
+                n.news = fb.get_news()
         except Exception as e:
             abort(400)
+                #firebase로부터 Data 얻어오기
+        finally:#else:
+            ret = ""
+            for i in n.news[category]:
+                ret = ret + "<news>" + "<title>" + i[0] + "</title>" + "<content>" + i[1] + "</content>" + "</news>"
+            #data = json.dumps(n.news[category], ensure_ascii=False)
+            #return jsonify(ret)
+            return Markup(ret)
 
+'''
+@app.route('/getMirrorID', methods=['GET'])
+def get_mirror_uid():
+    uid = request.args.get('uid')
+    mirror_uid = fb.get_mirror_id(uid)
+    if mirror_uid is None:
+        mirror_uid = "null"
+    return jsonify(mirror_uid)
+'''
 
 @app.route('/get_weather', methods=['GET','POST'])
 def get_weather():
-    info = w.get_weather()
-    ret = ""
-    for i in info.keys():
-        ret = ret + "<" + str(i) + ">" + str(info[i]) + "</" + str(i) + ">"
-    return Markup(ret)
-
+    print('get_weather')
+    weather_data = fb.get_weather()
+    return jsonify(weather_data)
 
 @app.route('/profileImage.jpg', methods=['GET', 'POST'])
 def send_image():
@@ -106,9 +114,25 @@ def send_switch_status():
 def recieveCategory():
     uid = request.args.get('uid')
     category = request.args.get('category')
-    category_dict = {"category": category}
+    print(category)
+    if category == '정치':
+        category = 'politics'
+    elif category == '경제':
+        category = 'economy'
+    elif category == '사회':
+        category = 'society'
+    elif category == '생활/문화':
+        category = 'life'
+    elif category == '세계':
+        category = 'world'
+    elif category == 'IT/과학':
+        category = 'it'
+    else:
+        category = 'world'
+    category_dict = {'category': category}
     fb.update_category(uid, category_dict)
     return "True"
+
 
 @app.route("/login", methods=['GET'])
 def login():
@@ -128,13 +152,15 @@ def login():
 
 @app.route("/sendImage", methods=['POST'])
 def save_image():
+    mirror_uid = request.values.get('mirrorUid')
     uid = request.values.get('uid')
     file = request.files.get('Image')
+
     file_ext = os.path.splitext(file.filename)[1]
     file_name = datetime.datetime.now().strftime('%Y%m%d_%H-%M-%S') + file_ext
 
     try:
-        file_dir = os.path.join(app.config['IMAGE_FOLDER'], uid)
+        file_dir = os.path.join(app.config['IMAGE_FOLDER'], mirror_uid, 'user_photos', uid)
         if not os.path.isdir(file_dir):
             os.makedirs(file_dir)
     except Exception as e:
@@ -142,7 +168,7 @@ def save_image():
     finally:
         file.save(file_dir +'//'+file_name)
         image_url = {
-            'url':file_name
+            'url': file_name
         }
         fb.update_image(uid, image_url)
 
