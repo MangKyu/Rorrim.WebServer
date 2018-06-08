@@ -143,7 +143,6 @@ class News:
                 msg_dict = connector.create_dict('/NEWS', 'REQUEST NEWS')
                 connector.send_msg_to_all(msg_dict)
                 print('Send News in news.py')
-
                 time.sleep(3600)
             except Exception as e:
                 print(e)

@@ -22,7 +22,7 @@ if __name__ == '__main__':
     wt_th.start()
 
     connector.start()
-    app.run(host=host, debug=True, use_reloader=False)#, port=5000)
+    app.run(host=host, debug=True, use_reloader=False, port=5000)
     #app.run(host='192.168.0.126', debug=True, use_reloader=False)#, port=5000)
     #app.run(host='172.16.28.163', debug=True, use_reloader=False)#, port=5000)
 

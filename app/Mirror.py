@@ -3,7 +3,7 @@ import json
 class Mirror:
     def __init__(self, client_socket):
         self.client_socket = client_socket
-        self.mirror_uid = self.recv_msg()['BODY']#self.client_socket.recv(4096)#.decode('utf-8')
+        self.mirror_uid = self.recv_msg()['BODY']
         self.user_list = []
         self.set_user_list()
         print('Connect to Pi Complete')

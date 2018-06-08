@@ -102,11 +102,26 @@ def send_switch_status():
     uid = request.args.get('uid')
     activity_name = request.args.get('activityName').split('.')
     is_checked = request.args.get('isChecked')
+    mirror_uid = request.args.get('mirrorUid')
+
     alarm_dict = {
         activity_name[1]: is_checked
     }
-    fb.update_switch(uid, alarm_dict)
-    ###send Data to PI
+
+    from app import connector
+    try:
+        if connector.mirror_list[mirror_uid].user_uid == uid:
+            send_dict = {
+                '/SWITCH': alarm_dict
+            }
+            connector.mirror_list[mirror_uid].send_msg(send_dict)
+            print('pi 존재한다.')
+    except Exception as e:
+        pass
+    finally:
+
+        fb.update_switch(uid, alarm_dict)
+
     return 'True'
 
 
