@@ -26,6 +26,9 @@ class FirebaseManager:
     def update_image(self, uid, image_url):
         self.root.child('user').child(uid).update(image_url)
 
+    def update_user(self, mirror_uid, user_dict):
+        self.root.child('rorrim').child(mirror_uid).update(user_dict)
+
     def get_profile_name(self, uid):
         return self.image.child(uid).child('url').get()
 

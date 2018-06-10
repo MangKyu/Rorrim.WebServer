@@ -694,7 +694,7 @@ class FaceID:
         tf.summary.scalar('accuracy', evaluation_step)
         return evaluation_step, prediction
 
-    def start_training(self, mirror_uid):
+    def start_training(self, mirror_uid='rorrim1234567890'):
         # tf.app.run(main=self.main, argv=[sys.argv[0]] + self.unparsed)
         # TensorBoard의 summaries를 write할 directory를 설정한다.
         self.init_setting(mirror_uid)
@@ -1015,9 +1015,10 @@ class FaceID:
             graph_def.ParseFromString(f.read())
             _ = tf.import_graph_def(graph_def, name='')
 
-    def get_accrucy(self, mirror_uid, file_name):
+    def get_accrucy(self, mirror_uid):
         answer = None
-        image_path = os.path.join('Files', 'FaceID', mirror_uid, file_name)
+        folder_path = os.path.join('Files', 'FaceID', mirror_uid)
+        image_path = os.path.join(folder_path, 'test.jpg')#, file_name)
         if not tf.gfile.Exists(image_path):
             tf.logging.fatal('File does not exist %s', image_path)
             return answer
@@ -1043,14 +1044,22 @@ class FaceID:
                 score = predictions[node_id]
                 print('%s (score = %.5f)' % (human_string, score))
 
-            uid, accuracy = labels[top_k[0]], predictions[top_k[0]]
-            return uid, accuracy
+            uid_label, accuracy = labels[top_k[0]], predictions[top_k[0]]
+            uid_label = uid_label.split("'")[1].split('\\')[0]
 
-    def login(self, uid, file_name):
+            dir_path = os.path.join(folder_path, 'user_photos')
+            dir_list = os.listdir(dir_path)
+            for dir in dir_list:
+                if dir.lower() == uid_label.lower():
+                    uid_label = dir
+                    break
+            return uid_label, accuracy
+
+    def login(self, mirror_uid):
         # file_name = 'test.jpg'
-        # uid = 'lion'
-        uid_label, accuracy = self.get_accrucy(file_name)
-        if uid_label.__contains__(uid) and accuracy >= 0.9:
-            return True
-        else:
-            return False
+        #uid = None
+        uid, accuracy = self.get_accrucy(mirror_uid)#, file_name)
+
+        if accuracy <= 0.4:
+            uid = None
+        return uid

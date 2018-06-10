@@ -21,8 +21,33 @@ class pi_connector(threading.Thread):
             mirror = Mirror.Mirror(client_socket)
             self.mirror_list[mirror.mirror_uid] = mirror
 
+    def authenticate(self, mirror_uid, head, body):
+        str = 'False'
+        try:
+            send_dict = self.create_dict(head, body)
+            self.mirror_list[mirror_uid].send_msg(send_dict)
+            auth_dict = self.mirror_list[mirror_uid].recv_msg()
+            if auth_dict['BODY'] is True:
+                str = 'True'
+        except Exception as e:
+            pass
+        finally:
+            return str
+
+    def update_pi(self, mirror_uid, user_uid, head, body):
+        str = 'False'
+        try:
+            if self.mirror_list[mirror_uid].user_uid == user_uid:
+                send_dict = self.create_dict(head, body)
+                self.mirror_list[mirror_uid].send_msg(send_dict)
+                str = 'True'
+        except Exception as e:
+            pass
+        finally:
+            return str
+
     def create_dict(self, head, body):
-        msg_dict ={
+        msg_dict = {
             'HEAD': head,
             'BODY': body,
         }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SmartMirror.iml" filepath="$PROJECT_DIR$/.idea/SmartMirror.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SmartMirror_WebServer.iml" filepath="$PROJECT_DIR$/.idea/SmartMirror_WebServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SmartMirror_WebServer.iml" filepath="$PROJECT_DIR$/.idea/SmartMirror_WebServer.iml" />
     </modules>
   </component>
 </project>
