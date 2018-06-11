@@ -30,7 +30,7 @@ class FirebaseManager:
         self.root.child('rorrim').child(mirror_uid).update(user_dict)
 
     def get_profile_name(self, uid):
-        return self.image.child(uid).child('url').get()
+        return self.root.child('user').child(uid).child('url').get()
 
     def update_news(self, news_data):
         self.news.update(news_data)
@@ -42,7 +42,7 @@ class FirebaseManager:
         self.root.child('user').child(uid).update(category_dict)
 
     def update_location(self, uid, location_dict):
-        self.root.child('user').child(uid).update(location_dict)
+        self.root.child('user').child(uid).child('location').update(location_dict)
 
     def get_user_list(self, mirror_uid):
         user_list = self.root.child('rorrim').child(mirror_uid).get().keys()

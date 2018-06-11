@@ -2,12 +2,14 @@ from flask import render_template, request, send_file, abort, Markup, jsonify
 from app import app, n, w, fb, face_classification
 import os
 import datetime
+from shutil import copyfile
 
-IMAGE_FOLDER = os.path.join('Files', 'FaceID')#'smartmirror_user')
+IMAGE_FOLDER = os.path.join('Files', 'FaceID')
 AUDIO_FOLDER = os.path.join('Files', 'Audio')
+PROFILE_FOLDER = os.path.join('Files', 'Profile')
 app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
 app.config['AUDIO_FOLDER'] = AUDIO_FOLDER
-
+app.config['PROFILE_FOLDER'] = PROFILE_FOLDER
 
 @app.route('/')
 def home():
@@ -73,8 +75,7 @@ def set_mirror():
 @app.route('/getNews', methods=['POST'])
 def get_news():
     uid = request.values.get('uid')
-    category = None
-    if uid =='None':
+    if uid == 'None':
         category = 'world'
     else:
         category = fb.get_category(uid)
@@ -97,15 +98,6 @@ def get_news():
             print('news')
             return Markup(ret)
 
-'''
-@app.route('/getMirrorID', methods=['GET'])
-def get_mirror_uid():
-    uid = request.args.get('uid')
-    mirror_uid = fb.get_mirror_id(uid)
-    if mirror_uid is None:
-        mirror_uid = "null"
-    return jsonify(mirror_uid)
-'''
 
 @app.route('/getWeather', methods=['GET','POST'])
 def get_weather():
@@ -120,7 +112,7 @@ def send_image():
     profile_name = fb.get_profile_name(uid)
     if profile_name is not None:
         try:
-            full_filename = os.path.join(app.config['IMAGE_FOLDER'], uid, profile_name)
+            full_filename = os.path.join(app.config['PROFILE_FOLDER'], profile_name)
             print('send profile' + full_filename)
             return send_file(full_filename, as_attachment=True)
         except Exception as e:
@@ -129,10 +121,39 @@ def send_image():
             print(e)
             return render_template("image.html", user_image=full_filename)
     else:
-        print('send 1')
+        print(e)
+        print('send 2')
         full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
         return render_template("image.html", user_image=full_filename)
 
+
+@app.route("/sendImage", methods=['POST'])
+def save_image():
+    mirror_uid = request.values.get('mirrorUid')
+    uid = request.values.get('uid')
+    file = request.files.get('Image')
+
+    file_ext = os.path.splitext(file.filename)[1]
+    file_name = uid + '_' + datetime.datetime.now().strftime('%Y%m%d_%H-%M-%S') + file_ext
+
+    try:
+        file_dir = os.path.join(app.config['IMAGE_FOLDER'], mirror_uid, 'user_photos', uid)
+        if not os.path.isdir(file_dir):
+            os.makedirs(file_dir)
+    except Exception as e:
+        print(e)
+    finally:
+        file_path = file_dir + '//' + file_name
+        file.save(file_path)
+        image_url = {
+            'url': file_name
+        }
+        fb.update_image(uid, image_url)
+        copyfile(file_path, app.config['PROFILE_FOLDER'] +'//' + file_name)
+        #file = open(file_path, 'rb')
+        #file.save(app.config['PROFILE_FOLDER'] +'//' + file_name)
+
+    return jsonify('test')
 
 @app.route("/sendSwitchStatus", methods=['GET'])
 def send_switch_status():
@@ -193,30 +214,6 @@ def login():
     print(uid)
     return jsonify(uid)
 
-
-@app.route("/sendImage", methods=['POST'])
-def save_image():
-    mirror_uid = request.values.get('mirrorUid')
-    uid = request.values.get('uid')
-    file = request.files.get('Image')
-
-    file_ext = os.path.splitext(file.filename)[1]
-    file_name = datetime.datetime.now().strftime('%Y%m%d_%H-%M-%S') + file_ext
-
-    try:
-        file_dir = os.path.join(app.config['IMAGE_FOLDER'], mirror_uid, 'user_photos', uid)
-        if not os.path.isdir(file_dir):
-            os.makedirs(file_dir)
-    except Exception as e:
-        print(e)
-    finally:
-        file.save(file_dir +'//'+file_name)
-        image_url = {
-            'url': file_name
-        }
-        fb.update_image(uid, image_url)
-
-    return jsonify('test')
 
 @app.route("/getPath", methods=['GET'])
 def send_path():
