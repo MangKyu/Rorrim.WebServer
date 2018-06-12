@@ -698,7 +698,7 @@ class FaceID:
     def start_training(self):
         # tf.app.run(main=self.main, argv=[sys.argv[0]] + self.unparsed)
         # TensorBoard의 summaries를 write할 directory를 설정한다.
-        while True:
+        #while True:
             dir_list = os.listdir('Files/FaceID')
             for mirror_uid in dir_list:
                 self.init_setting(mirror_uid)

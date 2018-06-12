@@ -59,3 +59,6 @@ class FirebaseManager:
 
     def update_name(self, uid, name_dic):
         self.root.child('user').child(uid).update(name_dic)
+
+    def get_name(self, uid):
+        return self.root.child('user').child(uid).child('name').get()

@@ -349,3 +349,9 @@ def set_name():
     fb.update_name(uid, name_dic)
 
     return 'true'
+
+
+@app.route("/getName", methods=['GET', 'POST'])
+def get_name():
+    uid = request.values.get('uid')
+    return fb.get_name(uid)
