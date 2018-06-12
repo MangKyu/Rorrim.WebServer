@@ -63,11 +63,12 @@ from tensorflow.python.framework import graph_util
 from tensorflow.python.framework import tensor_shape
 from tensorflow.python.platform import gfile
 from tensorflow.python.util import compat
+from app import CustomException
 
 
 class FaceID:
     def __init__(self):
-
+        self.custom_exception = CustomException.CustomException('Error')
         # 모든 파라미터들은 특정한 모델 architecture와 묶여(tied) 있다..
         self.FLAGS = None
         self.DATA_URL = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz'
@@ -80,7 +81,7 @@ class FaceID:
         self.RESIZED_INPUT_TENSOR_NAME = 'ResizeBilinear:0'
         self.MAX_NUM_IMAGES_PER_CLASS = 2 ** 27 - 1  # ~134M
 
-        #self.init_setting()
+        # self.init_setting()
 
     def create_image_lists(self, image_dir, testing_percentage, validation_percentage):
         """file system으로부터 training 이미지들의 list를 만든다.
@@ -694,160 +695,169 @@ class FaceID:
         tf.summary.scalar('accuracy', evaluation_step)
         return evaluation_step, prediction
 
-    def start_training(self, mirror_uid='rorrim1234567890'):
+    def start_training(self):
         # tf.app.run(main=self.main, argv=[sys.argv[0]] + self.unparsed)
         # TensorBoard의 summaries를 write할 directory를 설정한다.
-        self.init_setting(mirror_uid)
-        if tf.gfile.Exists(self.FLAGS.summaries_dir):
-            tf.gfile.DeleteRecursively(self.FLAGS.summaries_dir)
-        tf.gfile.MakeDirs(self.FLAGS.summaries_dir)
+        while True:
+            dir_list = os.listdir('Files/FaceID')
+            for mirror_uid in dir_list:
+                self.init_setting(mirror_uid)
+                try:
+                    if tf.gfile.Exists(self.FLAGS.summaries_dir):
+                        tf.gfile.DeleteRecursively(self.FLAGS.summaries_dir)
+                    tf.gfile.MakeDirs(self.FLAGS.summaries_dir)
 
-        # pre-trained graph를 생성한다.
-        self.maybe_download_and_extract()
-        graph, bottleneck_tensor, jpeg_data_tensor, resized_image_tensor = (
-            self.create_inception_graph())
+                    # pre-trained graph를 생성한다.
+                    self.maybe_download_and_extract()
+                    graph, bottleneck_tensor, jpeg_data_tensor, resized_image_tensor = (
+                        self.create_inception_graph())
 
-        # 폴더 구조를 살펴보고, 모든 이미지에 대한 lists를 생성한다.
-        image_lists = self.create_image_lists(self.FLAGS.image_dir, self.FLAGS.testing_percentage,
-                                              self.FLAGS.validation_percentage)
-        class_count = len(image_lists.keys())
-        if class_count == 0:
-            print('No valid folders of images found at ' + self.FLAGS.image_dir)
-            return -1
-        if class_count == 1:
-            print('Only one valid folder of images found at ' + self.FLAGS.image_dir +
-                  ' - multiple classes are needed for classification.')
-            return -1
+                    # 폴더 구조를 살펴보고, 모든 이미지에 대한 lists를 생성한다.
+                    image_lists = self.create_image_lists(self.FLAGS.image_dir, self.FLAGS.testing_percentage,
+                                                          self.FLAGS.validation_percentage)
+                    class_count = len(image_lists.keys())
+                    if class_count == 0:
+                        error_msg = 'No valid folders of images found at ' + self.FLAGS.image_dir
+                        self.custom_exception.raise_exception(error_msg)
+                    if class_count == 1:
+                        error_msg = 'Only one valid folder of ' \
+                                    'images found at ' + self.FLAGS.image_dir + ' - multiple classes are needed for classification.'
+                        self.custom_exception.raise_exception(error_msg)
 
-        # 커맨드라인 flag에 distortion에 관련된 설정이 있으면 distortion들을 적용한다.
-        do_distort_images = self.should_distort_images(
-            self.FLAGS.flip_left_right, self.FLAGS.random_crop, self.FLAGS.random_scale,
-            self.FLAGS.random_brightness)
+                        # 커맨드라인 flag에 distortion에 관련된 설정이 있으면 distortion들을 적용한다.
+                    do_distort_images = self.should_distort_images(
+                        self.FLAGS.flip_left_right, self.FLAGS.random_crop, self.FLAGS.random_scale,
+                        self.FLAGS.random_brightness)
 
-        with tf.Session(graph=graph) as sess:
+                    with tf.Session(graph=graph) as sess:
 
-            if do_distort_images:
-                # 우리는 distortion들을 적용할것이다. 따라서 필요한 연산들(operations)을 설정한다.
-                (distorted_jpeg_data_tensor,
-                 distorted_image_tensor) = self.add_input_distortions(
-                    self.FLAGS.flip_left_right, self.FLAGS.random_crop,
-                    self.FLAGS.random_scale, self.FLAGS.random_brightness)
-            else:
-                # 우리는 계산된 'bottleneck' 이미지 summaries를 가지고 있다.
-                # 이를 disk에 캐싱(caching)할 것이다.
-                self.cache_bottlenecks(sess, image_lists, self.FLAGS.image_dir,
-                                       self.FLAGS.bottleneck_dir, jpeg_data_tensor,
-                                       bottleneck_tensor)
+                        if do_distort_images:
+                            # 우리는 distortion들을 적용할것이다. 따라서 필요한 연산들(operations)을 설정한다.
+                            (distorted_jpeg_data_tensor,
+                             distorted_image_tensor) = self.add_input_distortions(
+                                self.FLAGS.flip_left_right, self.FLAGS.random_crop,
+                                self.FLAGS.random_scale, self.FLAGS.random_brightness)
+                        else:
+                            # 우리는 계산된 'bottleneck' 이미지 summaries를 가지고 있다.
+                            # 이를 disk에 캐싱(caching)할 것이다.
+                            self.cache_bottlenecks(sess, image_lists, self.FLAGS.image_dir,
+                                                   self.FLAGS.bottleneck_dir, jpeg_data_tensor,
+                                                   bottleneck_tensor)
 
-            # 우리가 학습시킬(training) 새로운 layer를 추가한다.
-            (train_step, cross_entropy, bottleneck_input, ground_truth_input,
-             final_tensor) = self.add_final_training_ops(len(image_lists.keys()),
-                                                         self.FLAGS.final_tensor_name,
-                                                         bottleneck_tensor)
+                        # 우리가 학습시킬(training) 새로운 layer를 추가한다.
+                        (train_step, cross_entropy, bottleneck_input, ground_truth_input,
+                         final_tensor) = self.add_final_training_ops(len(image_lists.keys()),
+                                                                     self.FLAGS.final_tensor_name,
+                                                                     bottleneck_tensor)
 
-            # 우리의 새로운 layer의 정확도를 평가(evalute)하기 위한 새로운 operation들을 생성한다.
-            evaluation_step, prediction = self.add_evaluation_step(
-                final_tensor, ground_truth_input)
+                        # 우리의 새로운 layer의 정확도를 평가(evalute)하기 위한 새로운 operation들을 생성한다.
+                        evaluation_step, prediction = self.add_evaluation_step(
+                            final_tensor, ground_truth_input)
 
-            # 모든 summaries를 합치고(merge) summaries_dir에 쓴다.(write)
-            merged = tf.summary.merge_all()
-            train_writer = tf.summary.FileWriter(self.FLAGS.summaries_dir + '/train',
-                                                 sess.graph)
+                        # 모든 summaries를 합치고(merge) summaries_dir에 쓴다.(write)
+                        merged = tf.summary.merge_all()
+                        train_writer = tf.summary.FileWriter(self.FLAGS.summaries_dir + '/train',
+                                                             sess.graph)
 
-            validation_writer = tf.summary.FileWriter(
-                self.FLAGS.summaries_dir + '/validation')
+                        validation_writer = tf.summary.FileWriter(
+                            self.FLAGS.summaries_dir + '/validation')
 
-            # 우리의 모든 가중치들(weights)과 그들의 초기값들을 설정한다.
-            init = tf.global_variables_initializer()
-            sess.run(init)
+                        # 우리의 모든 가중치들(weights)과 그들의 초기값들을 설정한다.
+                        init = tf.global_variables_initializer()
+                        sess.run(init)
 
-            # 커맨드 라인에서 지정한 횟수만큼 학습을 진행한다.
-            for i in range(self.FLAGS.how_many_training_steps):
-                # bottleneck 값들의 batch를 얻는다. 이는 매번 distortion을 적용하고 계산하거나,
-                # disk에 저장된 chache로부터 얻을 수 있다.
-                if do_distort_images:
-                    (train_bottlenecks,
-                     train_ground_truth) = self.get_random_distorted_bottlenecks(
-                        sess, image_lists, self.FLAGS.train_batch_size, 'training',
-                        self.FLAGS.image_dir, distorted_jpeg_data_tensor,
-                        distorted_image_tensor, resized_image_tensor, bottleneck_tensor)
-                else:
-                    (train_bottlenecks,
-                     train_ground_truth, _) = self.get_random_cached_bottlenecks(
-                        sess, image_lists, self.FLAGS.train_batch_size, 'training',
-                        self.FLAGS.bottleneck_dir, self.FLAGS.image_dir, jpeg_data_tensor,
-                        bottleneck_tensor)
-                # grpah에 bottleneck과 ground truth를 feed하고, training step을 진행한다.
-                # TensorBoard를 위한 'merged' op을 이용해서 training summaries을 capture한다.
+                        # 커맨드 라인에서 지정한 횟수만큼 학습을 진행한다.
+                        for i in range(self.FLAGS.how_many_training_steps):
+                            # bottleneck 값들의 batch를 얻는다. 이는 매번 distortion을 적용하고 계산하거나,
+                            # disk에 저장된 chache로부터 얻을 수 있다.
+                            if do_distort_images:
+                                (train_bottlenecks,
+                                 train_ground_truth) = self.get_random_distorted_bottlenecks(
+                                    sess, image_lists, self.FLAGS.train_batch_size, 'training',
+                                    self.FLAGS.image_dir, distorted_jpeg_data_tensor,
+                                    distorted_image_tensor, resized_image_tensor, bottleneck_tensor)
+                            else:
+                                (train_bottlenecks,
+                                 train_ground_truth, _) = self.get_random_cached_bottlenecks(
+                                    sess, image_lists, self.FLAGS.train_batch_size, 'training',
+                                    self.FLAGS.bottleneck_dir, self.FLAGS.image_dir, jpeg_data_tensor,
+                                    bottleneck_tensor)
+                            # grpah에 bottleneck과 ground truth를 feed하고, training step을 진행한다.
+                            # TensorBoard를 위한 'merged' op을 이용해서 training summaries을 capture한다.
 
-                train_summary, _ = sess.run(
-                    [merged, train_step],
-                    feed_dict={bottleneck_input: train_bottlenecks,
-                               ground_truth_input: train_ground_truth})
-                train_writer.add_summary(train_summary, i)
+                            train_summary, _ = sess.run(
+                                [merged, train_step],
+                                feed_dict={bottleneck_input: train_bottlenecks,
+                                           ground_truth_input: train_ground_truth})
+                            train_writer.add_summary(train_summary, i)
 
-                # 일정 step마다 graph의 training이 얼마나 잘 되고 있는지 출력한다.
-                is_last_step = (i + 1 == self.FLAGS.how_many_training_steps)
-                if (i % self.FLAGS.eval_step_interval) == 0 or is_last_step:
-                    train_accuracy, cross_entropy_value = sess.run(
-                        [evaluation_step, cross_entropy],
-                        feed_dict={bottleneck_input: train_bottlenecks,
-                                   ground_truth_input: train_ground_truth})
-                    print('%s: Step %d: Train accuracy = %.1f%%' % (datetime.now(), i,
-                                                                    train_accuracy * 100))
-                    print('%s: Step %d: Cross entropy = %f' % (datetime.now(), i,
-                                                               cross_entropy_value))
-                    validation_bottlenecks, validation_ground_truth, _ = (
-                        self.get_random_cached_bottlenecks(
-                            sess, image_lists, self.FLAGS.validation_batch_size, 'validation',
-                            self.FLAGS.bottleneck_dir, self.FLAGS.image_dir, jpeg_data_tensor,
-                            bottleneck_tensor))
-                    # validation step을 진행한다.
-                    # TensorBoard를 위한 'merged' op을 이용해서 training summaries을 capture한다.
-                    validation_summary, validation_accuracy = sess.run(
-                        [merged, evaluation_step],
-                        feed_dict={bottleneck_input: validation_bottlenecks,
-                                   ground_truth_input: validation_ground_truth})
-                    validation_writer.add_summary(validation_summary, i)
-                    print('%s: Step %d: Validation accuracy = %.1f%% (N=%d)' %
-                          (datetime.now(), i, validation_accuracy * 100,
-                           len(validation_bottlenecks)))
+                            # 일정 step마다 graph의 training이 얼마나 잘 되고 있는지 출력한다.
+                            is_last_step = (i + 1 == self.FLAGS.how_many_training_steps)
+                            if (i % self.FLAGS.eval_step_interval) == 0 or is_last_step:
+                                train_accuracy, cross_entropy_value = sess.run(
+                                    [evaluation_step, cross_entropy],
+                                    feed_dict={bottleneck_input: train_bottlenecks,
+                                               ground_truth_input: train_ground_truth})
+                                print('%s: Step %d: Train accuracy = %.1f%%' % (datetime.now(), i,
+                                                                                train_accuracy * 100))
+                                print('%s: Step %d: Cross entropy = %f' % (datetime.now(), i,
+                                                                           cross_entropy_value))
+                                validation_bottlenecks, validation_ground_truth, _ = (
+                                    self.get_random_cached_bottlenecks(
+                                        sess, image_lists, self.FLAGS.validation_batch_size, 'validation',
+                                        self.FLAGS.bottleneck_dir, self.FLAGS.image_dir, jpeg_data_tensor,
+                                        bottleneck_tensor))
+                                # validation step을 진행한다.
+                                # TensorBoard를 위한 'merged' op을 이용해서 training summaries을 capture한다.
+                                validation_summary, validation_accuracy = sess.run(
+                                    [merged, evaluation_step],
+                                    feed_dict={bottleneck_input: validation_bottlenecks,
+                                               ground_truth_input: validation_ground_truth})
+                                validation_writer.add_summary(validation_summary, i)
+                                print('%s: Step %d: Validation accuracy = %.1f%% (N=%d)' %
+                                      (datetime.now(), i, validation_accuracy * 100,
+                                       len(validation_bottlenecks)))
 
-            # 트레이닝 과정이 모두 끝났다.
-            # 따라서 이전에 보지 못했던 이미지를 통해 마지막 test 평가(evalution)을 진행한다.
-            test_bottlenecks, test_ground_truth, test_filenames = (
-                self.get_random_cached_bottlenecks(sess, image_lists, self.FLAGS.test_batch_size,
-                                                   'testing', self.FLAGS.bottleneck_dir,
-                                                   self.FLAGS.image_dir, jpeg_data_tensor,
-                                                   bottleneck_tensor))
-            test_accuracy, predictions = sess.run(
-                [evaluation_step, prediction],
-                feed_dict={bottleneck_input: test_bottlenecks,
-                           ground_truth_input: test_ground_truth})
-            print('Final test accuracy = %.1f%% (N=%d)' % (
-                test_accuracy * 100, len(test_bottlenecks)))
+                        # 트레이닝 과정이 모두 끝났다.
+                        # 따라서 이전에 보지 못했던 이미지를 통해 마지막 test 평가(evalution)을 진행한다.
+                        test_bottlenecks, test_ground_truth, test_filenames = (
+                            self.get_random_cached_bottlenecks(sess, image_lists, self.FLAGS.test_batch_size,
+                                                               'testing', self.FLAGS.bottleneck_dir,
+                                                               self.FLAGS.image_dir, jpeg_data_tensor,
+                                                               bottleneck_tensor))
+                        test_accuracy, predictions = sess.run(
+                            [evaluation_step, prediction],
+                            feed_dict={bottleneck_input: test_bottlenecks,
+                                       ground_truth_input: test_ground_truth})
+                        print('Final test accuracy = %.1f%% (N=%d)' % (
+                            test_accuracy * 100, len(test_bottlenecks)))
 
-            if self.FLAGS.print_misclassified_test_images:
-                print('=== MISCLASSIFIED TEST IMAGES ===')
-                for i, test_filename in enumerate(test_filenames):
-                    if predictions[i] != test_ground_truth[i].argmax():
-                        print('%70s  %s' % (test_filename,
-                                            list(image_lists.keys())[predictions[i]]))
+                        if self.FLAGS.print_misclassified_test_images:
+                            print('=== MISCLASSIFIED TEST IMAGES ===')
+                            for i, test_filename in enumerate(test_filenames):
+                                if predictions[i] != test_ground_truth[i].argmax():
+                                    print('%70s  %s' % (test_filename,
+                                                        list(image_lists.keys())[predictions[i]]))
 
-            # 학습된 graph와 weights들을 포함한 labels를 쓴다.(write)
-            output_graph_def = graph_util.convert_variables_to_constants(
-                sess, graph.as_graph_def(), [self.FLAGS.final_tensor_name])
-            with gfile.FastGFile(self.FLAGS.output_graph, 'wb') as f:
-                f.write(output_graph_def.SerializeToString())
-            with gfile.FastGFile(self.FLAGS.output_labels, 'w') as f:
-                f.write('\n'.join(image_lists.keys()) + '\n')
+                        # 학습된 graph와 weights들을 포함한 labels를 쓴다.(write)
+                        output_graph_def = graph_util.convert_variables_to_constants(
+                            sess, graph.as_graph_def(), [self.FLAGS.final_tensor_name])
+                        with gfile.FastGFile(self.FLAGS.output_graph, 'wb') as f:
+                            f.write(output_graph_def.SerializeToString())
+                        with gfile.FastGFile(self.FLAGS.output_labels, 'w') as f:
+                            f.write('\n'.join(image_lists.keys()) + '\n')
+                except Exception as e:
+                    print(e)
 
     def init_setting(self, mirror_uid):
         folder_path = os.path.join('Files', 'FaceID', mirror_uid)
         photo_path = os.path.join(folder_path, 'user_photos')
 
-        if not os.path.isdir(photo_path):
-            os.makedirs(photo_path)
+        try:
+            if not os.path.isdir(photo_path):
+                os.makedirs(photo_path)
+        except Exception as e:
+            self.custom_exception.raise_exception('directory exist')
 
         self.graph_path = os.path.join(folder_path, 'output_graph.pb')  # 읽어들일 graph 파일 경로
         self.label_path = os.path.join(folder_path, 'output_labels.txt')  # 읽어들일 labels 파일 경로
@@ -1007,10 +1017,10 @@ class FaceID:
         self.FLAGS = parser.parse_known_args()[0]
         # self.FLAGS, self.unparsed = parser.parse_known_args()
 
-    def create_graph(self):
+    def create_graph(self, graph_path):
         """저장된(saved) GraphDef 파일로부터 graph를 생성하고 saver를 반환한다."""
         # 저장된(saved) graph_def.pb로부터 graph를 생성한다.
-        with tf.gfile.FastGFile(self.graph_path, 'rb') as f:
+        with tf.gfile.FastGFile(graph_path, 'rb') as f:
             graph_def = tf.GraphDef()
             graph_def.ParseFromString(f.read())
             _ = tf.import_graph_def(graph_def, name='')
@@ -1018,7 +1028,9 @@ class FaceID:
     def get_accrucy(self, mirror_uid):
         answer = None
         folder_path = os.path.join('Files', 'FaceID', mirror_uid)
-        image_path = os.path.join(folder_path, 'test.jpg')#, file_name)
+        image_path = os.path.join(folder_path, 'test.jpg')  # , file_name)
+        label_path = os.path.join(folder_path, 'output_labels.txt')
+        graph_path = os.path.join(folder_path, 'output_graph.pb')
         if not tf.gfile.Exists(image_path):
             tf.logging.fatal('File does not exist %s', image_path)
             return answer
@@ -1026,7 +1038,7 @@ class FaceID:
         image_data = tf.gfile.FastGFile(image_path, 'rb').read()
 
         # 저장된(saved) GraphDef 파일로부터 graph를 생성한다.
-        self.create_graph()
+        self.create_graph(graph_path)
 
         with tf.Session() as sess:
 
@@ -1036,7 +1048,7 @@ class FaceID:
             predictions = np.squeeze(predictions)
 
             top_k = predictions.argsort()[-5:][::-1]  # 가장 높은 확률을 가진 5개(top 5)의 예측값(predictions)을 얻는다.
-            f = open(self.label_path, 'rb')
+            f = open(label_path, 'rb')
             lines = f.readlines()
             labels = [str(w).replace("\n", "") for w in lines]
             for node_id in top_k:
@@ -1057,9 +1069,9 @@ class FaceID:
 
     def login(self, mirror_uid):
         # file_name = 'test.jpg'
-        #uid = None
-        self.init_setting(mirror_uid)
-        uid, accuracy = self.get_accrucy(mirror_uid)#, file_name)
+        # uid = None
+        #self.init_setting(mirror_uid)
+        uid, accuracy = self.get_accrucy(mirror_uid)  # , file_name)
 
         if accuracy <= 0.4:
             uid = None
