@@ -1058,6 +1058,7 @@ class FaceID:
     def login(self, mirror_uid):
         # file_name = 'test.jpg'
         #uid = None
+        self.init_setting(mirror_uid)
         uid, accuracy = self.get_accrucy(mirror_uid)#, file_name)
 
         if accuracy <= 0.4:

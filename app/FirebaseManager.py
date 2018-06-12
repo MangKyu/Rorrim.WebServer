@@ -29,6 +29,9 @@ class FirebaseManager:
     def update_user(self, mirror_uid, user_dict):
         self.root.child('rorrim').child(mirror_uid).update(user_dict)
 
+    def remove_music(self, uid, artist, song):
+        self.root.child('user').child(uid).child('audio').child(artist).child(song).delete()
+
     def get_profile_name(self, uid):
         return self.root.child('user').child(uid).child('url').get()
 
@@ -53,3 +56,6 @@ class FirebaseManager:
 
     def get_news(self):
         return self.news.get()
+
+    def update_name(self, uid, name_dic):
+        self.root.child('user').child(uid).update(name_dic)

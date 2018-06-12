@@ -1,7 +1,8 @@
 from flask import render_template, request, send_file, abort, Markup, jsonify
 from app import app, n, w, fb, face_classification
 import os
-import datetime
+import datetime, time
+from pyrebase import pyrebase
 from shutil import copyfile
 
 IMAGE_FOLDER = os.path.join('Files', 'FaceID')
@@ -10,6 +11,13 @@ PROFILE_FOLDER = os.path.join('Files', 'Profile')
 app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
 app.config['AUDIO_FOLDER'] = AUDIO_FOLDER
 app.config['PROFILE_FOLDER'] = PROFILE_FOLDER
+config = {
+  "apiKey": "AIzaSyAByxlclpYZDLQBk5Enmeg7ImrLlfsD9yU",
+  "authDomain": "smartmirror-75b89.firebaseapp.com",
+  "databaseURL": "https://smartmirror-75b89.firebaseio.com",
+  "storageBucket": "smartmirror-75b89.appspot.com",
+  "serviceAccount": "Files/Auth/smartmirror-75b89-firebase-adminsdk-vx8is-56d6e1cacc.json"
+}
 
 @app.route('/')
 def home():
@@ -121,7 +129,6 @@ def send_image():
             print(e)
             return render_template("image.html", user_image=full_filename)
     else:
-        print(e)
         print('send 2')
         full_filename = os.path.join(app.config['IMAGE_FOLDER'], '1.jpg')
         return render_template("image.html", user_image=full_filename)
@@ -237,3 +244,108 @@ def get_location():
 
     fb.update_location(uid, location_dict)
     return 'True'
+
+@app.route('/getMusic', methods=['GET', 'POST'])
+def get_music():
+    mirror_uid = request.values.get('mirrorUid')
+    uid = request.values.get('uid')
+    fileName = request.values.get('fileName')
+    file_dir = ''
+
+    try:
+        print('start')
+        file_dir = os.path.join(app.config['AUDIO_FOLDER'], mirror_uid, 'music', uid)
+        if not os.path.isdir(file_dir):
+            os.makedirs(file_dir)
+    except Exception as e:
+        print(e)
+    finally:
+        #pyrebse 접근
+        firebase = pyrebase.initialize_app(config)
+
+        # Get a reference to the auth service
+        auth = firebase.auth()
+
+        # Get a reference to the database service
+        db = firebase.database()
+
+        # Get user key in database
+        storage = firebase.storage()
+        print(fileName)
+        storage.child(uid + "/" + fileName).download(file_dir + "//" + fileName)
+        trigger = {'update': fileName}
+
+        from app import connector
+        msg = connector.update_pi(mirror_uid, uid, '/PLAYLIST', trigger)
+
+        return 'true'
+
+@app.route("/getPlayList", methods=['GET', 'POST'])
+def playList():
+    mirror_uid = request.values.get('mirrorUid')
+    uid = request.values.get('uid')
+    dic = {}
+    i = 0
+    path_dir = os.path.join(app.config['AUDIO_FOLDER'], mirror_uid, 'music', uid)
+    if not os.path.isdir(path_dir):
+        os.makedirs(path_dir)
+    file_list = os.listdir(path_dir)
+    for word in file_list:
+        dic[i] = word
+        i = i + 1
+    print(dic)
+    return jsonify(dic)
+
+@app.route('/removeMusic', methods=['GET', 'POST'])
+def remove():
+    mirror_uid = request.values.get('mirrorUid')
+    uid = request.values.get('uid')
+    fileName = request.values.get('fileName')
+    artist = request.values.get('artist')
+    song = request.values.get('song')
+    file_dir = os.path.join(app.config['AUDIO_FOLDER'], mirror_uid, 'music', uid)
+    file = file_dir + '//' + fileName
+    print(file)
+    # pyrebse 접근
+    firebase = pyrebase.initialize_app(config)
+
+    # Get a reference to the auth service
+    auth = firebase.auth()
+
+    # Get a reference to the database service
+    db = firebase.database()
+
+    if os.path.isfile(file):
+        os.remove(file)
+        fb.remove_music(uid, artist, song)
+        trigger = {'remove': fileName}
+
+        from app import connector
+        msg = connector.update_pi(mirror_uid, uid, '/PLAYLIST', trigger)
+
+        return 'true'
+    else:
+        return 'false'
+
+@app.route("/getMusicFile", methods=['GET', 'POST'])
+def get_playlist():
+    mirror_uid = request.values.get('mirrorUid')
+    uid = request.values.get('uid')
+    fileName = request.values.get('fileName')
+
+    file_dir = os.path.join(app.config['AUDIO_FOLDER'], mirror_uid, 'music', uid)
+    try:
+        return send_file(file_dir + '//' + fileName, attachment_filename=fileName);
+    except Exception as e:
+        print(e)
+        return 'false'
+
+
+@app.route("/setName", methods=['GET', 'POST'])
+def set_name():
+    uid = request.values.get('uid')
+    name = request.values.get('name')
+    name_dic = {'name' : name}
+    fb.update_name(uid, name_dic)
+
+    return 'true'
