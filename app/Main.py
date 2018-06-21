@@ -1,24 +1,25 @@
 from app import app, n, w, connector, host, face_classification
 import threading
+#om tensorflow.python.client import graph_util
 
 if __name__ == '__main__':
     '''
     face_classification = FaceID.FaceID()
     face_classification.start_training("rorrim1234567890")
-    file_name = 'test.jpg'
+    file_name = 'test12313.jpg'
     uid = 'lion'
-    uid_label, accuracy = face_classification.get_accrucy("rorrim1234567890", 'test.jpg')
+    uid_label, accuracy = face_classification.get_accrucy("rorrim1234567890", 'test12313.jpg')
     if uid_label.__contains__(uid) and accuracy >= 0.9:
         print('Login Success')
     else:
         print('Login Fail')
     '''
     connector.start()
-
+    '''
     face_th = threading.Thread(target=face_classification.start_training)  # , args=('rorrim1234567890'))#('rorrim1234567890'))
     face_th.daemon = True
     face_th.start()
-
+    '''
     cr_th = threading.Thread(target=n.do_crawling)
     cr_th.daemon = True
     cr_th.start()

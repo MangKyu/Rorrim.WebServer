@@ -221,7 +221,6 @@ def login():
     print(uid)
     return jsonify(uid)
 
-
 @app.route("/getPath", methods=['GET'])
 def send_path():
     startX = request.args.get('startX')

@@ -27,6 +27,7 @@ class pi_connector(threading.Thread):
             send_dict = self.create_dict(head, body)
             self.mirror_list[mirror_uid].send_msg(send_dict)
             auth_dict = self.mirror_list[mirror_uid].recv_msg()
+            print('PI Connector [')
             if auth_dict['BODY'] is True:
                 str = 'True'
         except Exception as e:

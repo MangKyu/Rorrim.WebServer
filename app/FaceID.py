@@ -54,6 +54,7 @@ import re
 import struct
 import sys
 import tarfile
+from shutil import copyfile
 
 import numpy as np
 from six.moves import urllib
@@ -698,7 +699,7 @@ class FaceID:
     def start_training(self):
         # tf.app.run(main=self.main, argv=[sys.argv[0]] + self.unparsed)
         # TensorBoard의 summaries를 write할 directory를 설정한다.
-        #while True:
+        while True:
             dir_list = os.listdir('Files/FaceID')
             for mirror_uid in dir_list:
                 self.init_setting(mirror_uid)
@@ -759,8 +760,12 @@ class FaceID:
                         train_writer = tf.summary.FileWriter(self.FLAGS.summaries_dir + '/train',
                                                              sess.graph)
 
+                        train_writer.close()
+
                         validation_writer = tf.summary.FileWriter(
                             self.FLAGS.summaries_dir + '/validation')
+
+                        validation_writer.close()
 
                         # 우리의 모든 가중치들(weights)과 그들의 초기값들을 설정한다.
                         init = tf.global_variables_initializer()
@@ -847,6 +852,8 @@ class FaceID:
                         with gfile.FastGFile(self.FLAGS.output_labels, 'w') as f:
                             f.write('\n'.join(image_lists.keys()) + '\n')
                 except Exception as e:
+                    pass
+                    # self.custom_exception.raise_exception('Image file is under 20')
                     print(e)
 
     def init_setting(self, mirror_uid):
@@ -857,7 +864,7 @@ class FaceID:
             if not os.path.isdir(photo_path):
                 os.makedirs(photo_path)
         except Exception as e:
-            self.custom_exception.raise_exception('directory exist')
+            pass  # self.custom_exception.raise_exception('directory exist')
 
         self.graph_path = os.path.join(folder_path, 'output_graph.pb')  # 읽어들일 graph 파일 경로
         self.label_path = os.path.join(folder_path, 'output_labels.txt')  # 읽어들일 labels 파일 경로
@@ -1068,11 +1075,106 @@ class FaceID:
             return uid_label, accuracy
 
     def login(self, mirror_uid):
-        # file_name = 'test.jpg'
+        # file_name = 'test12313.jpg'
         # uid = None
-        #self.init_setting(mirror_uid)
+        # self.init_setting(mirror_uid)
         uid, accuracy = self.get_accrucy(mirror_uid)  # , file_name)
+        folder_path = os.path.join('Files', 'FaceID', mirror_uid)
 
-        if accuracy <= 0.4:
+        if accuracy <= 0.65:
+            res = 0
+            '''
+            for root, dirs, files in os.walk("Files/FaceID/"+mirror_uid+"/user_photos/"+uid+'/'):
+                for filename in files:
+                    res += image_similarity_vectors_via_numpy(folder_path+'/test.jpg', folder_path+"/user_photos/"+uid+'/'+filename)
+            
+            image_similarity_vectors_via_numpy(os.path.join(folder_path, 'test.jpg')):
+            print(sum/size)
+            '''
             uid = None
+        else:
+            file_name = 'test.jpg'
+            file_ext = os.path.splitext(file_name)[1]
+            file_name = uid + '_' + datetime.now().strftime('%Y%m%d_%H-%M-%S') + file_ext
+            copyfile(os.path.join(folder_path, 'test.jpg'),
+                     os.path.join(folder_path, 'user_photos', uid) + '//' + file_name)
+
+            # copyfile(os.path.join(folder_path, 'test.jpg'), os.path.join(folder_path, 'user_photos', uid) + '//' + file_name)
+            '''print(file_name)
+            for root, dirs, files in os.walk("Files/FaceID/"+mirror_uid+"/user_photos/"+uid+'/'):
+                for filename in files:
+                    image_similarity_vectors_via_numpy(folder_path+'/test.jpg', folder_path+"/user_photos/"+uid+'/'+filename)
+            '''
         return uid
+
+'''
+def image_similarity_vectors_via_numpy(filepath1, filepath2):
+    # source: http://www.syntacticbayleaves.com/2008/12/03/determining-image-similarity/
+    # may throw: Value Error: matrices are not aligned .
+
+    from PIL import Image
+    from numpy import average, linalg, dot
+    image1 = Image.open(filepath1)
+    image2 = Image.open(filepath2)
+    image1 = get_thumbnail(image1, stretch_to_fit=True)
+    image2 = get_thumbnail(image2, stretch_to_fit=True)
+
+    images = [image1, image2]
+
+    vectors = []
+
+    norms = []
+
+    for image in images:
+
+        vector = []
+
+        for pixel_tuple in image.getdata():
+            vector.append(average(pixel_tuple))
+
+        vectors.append(vector)
+
+        norms.append(linalg.norm(vector, 2))
+
+    a, b = vectors
+    a_norm, b_norm = norms
+    # ValueError: matrices are not aligned !
+    res = dot(a / a_norm, b / b_norm)
+    return res
+
+
+def get_thumbnail(image, size=(128, 128), stretch_to_fit=False, greyscale=False):
+    " get a smaller version of the image - makes comparison much faster/easier"
+
+    if not stretch_to_fit:
+        image.thumbnail(size, Image.ANTIALIAS)
+    else:
+        image = image.resize(size);  # for faster computation
+    if greyscale:
+        image = image.convert("L")  # Convert it to grayscale.
+    return image
+
+
+
+def get_filename(path):
+    # cross plattform filename from a given path
+    # source: http://stackoverflow.com/questions/8384737/python-extract-file-name-from-path-no-matter-what-the-os-path-format
+
+    import ntpath
+    head, tail = ntpath.split(path)
+    return tail or ntpath.basename(head)
+
+
+if __name__ == '__main__':
+
+    res = 0
+
+    mirror_uid = 'rorrim1234567890'
+    uid = 'A1rNcfWsplVW6SeK2gdclDZC2R12'
+    folder_path = os.path.join('Files', 'FaceID', mirror_uid)
+    for root, dirs, files in os.walk("Files/FaceID/" + mirror_uid + "/user_photos/" + uid + '/'):
+        for filename in files:
+            res += image_similarity_vectors_via_numpy(folder_path + '/test.jpg',
+                                               folder_path + "/user_photos/" + uid + '/' + filename)
+            print(res)
+'''

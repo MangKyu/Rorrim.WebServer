@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5bb83587-49ea-47b8-8119-7e0232a73da1" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Jg3zb9D0TSZ4K1N2B2A6t8q0utp1/test.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/FaceID.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/FaceID.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pi_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/pi_connector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/SmartMirror_WebServer$FaceID.coverage" NAME="FaceID Coverage Results" MODIFIED="1528956322430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/SmartMirror_WebServer$Main.coverage" NAME="Main Coverage Results" MODIFIED="1528959231097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/SmartMirror_WebServer$test.coverage" NAME="test Coverage Results" MODIFIED="1528896218793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="routes.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/routes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1030">
+              <caret line="210" column="49" selection-start-line="210" selection-start-column="49" selection-end-line="210" selection-end-column="49" />
+              <folding>
+                <element signature="e#0#77#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pi_connector.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/pi_connector.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="29" column="35" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FaceID.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/FaceID.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="1097" column="89" lean-forward="true" selection-start-line="1097" selection-start-column="89" selection-end-line="1097" selection-end-column="89" />
+              <folding>
+                <element signature="e#1933#1971#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>update</find>
+      <find>pi_conn</find>
+      <find>update_pi</find>
+      <find>start_training</find>
+      <find>init_se</find>
+      <find>music</find>
+      <find>while True</find>
+      <find>in</find>
+      <find>custom</find>
+      <find>start_</find>
+      <find>start_trai</find>
+      <find>retrain</find>
+      <find>name</find>
+      <find>remove</find>
+      <find>profileImage</find>
+      <find>u</find>
+      <find>.save</find>
+      <find>start_train</find>
+      <find>copy</find>
+      <find>datetime</find>
+      <find>copyfile</find>
+      <find>test</find>
+      <find>/login</find>
+      <find>setMirror</find>
+      <find>login</find>
+      <find>as ses</find>
+      <find>as sess</find>
+      <find>1000</find>
+      <find>saver</find>
+      <find>close</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/__init__.py" />
+        <option value="$PROJECT_DIR$/../garbag/routes.py" />
+        <option value="$PROJECT_DIR$/app/Mirror.py" />
+        <option value="$PROJECT_DIR$/app/FirebaseManager.py" />
+        <option value="$PROJECT_DIR$/app/pi_connector.py" />
+        <option value="$PROJECT_DIR$/app/test.py" />
+        <option value="$PROJECT_DIR$/app/Main.py" />
+        <option value="$PROJECT_DIR$/app/routes.py" />
+        <option value="$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/output_labels.txt" />
+        <option value="$PROJECT_DIR$/app/FaceID.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="188" />
+    <option name="y" value="163" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartMirror_WebServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartMirror_WebServer" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartMirror_WebServer" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartMirror_WebServer" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
+              <item name="FaceID" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartMirror_WebServer" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
+              <item name="FaceID" type="462c0819:PsiDirectoryNode" />
+              <item name="rorrim1234567890" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartMirror_WebServer" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
+              <item name="FaceID" type="462c0819:PsiDirectoryNode" />
+              <item name="rorrim1234567890" type="462c0819:PsiDirectoryNode" />
+              <item name="user_photos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartMirror_WebServer" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
+              <item name="FaceID" type="462c0819:PsiDirectoryNode" />
+              <item name="rorrim1234567890" type="462c0819:PsiDirectoryNode" />
+              <item name="user_photos" type="462c0819:PsiDirectoryNode" />
+              <item name="Xrb4lbiAAeUTiyMndUC1eLQWsKI3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.6 (SmartMirror_WebServer) &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SeungDae\PycharmProjects\SmartMirror_WebServer\app\Files\FaceID\rorrim1234567890\user_photos\Jg3zb9D0TSZ4K1N2B2A6t8q0utp1" />
+      <recent name="C:\Users\SeungDae\PycharmProjects\SmartMirror_WebServer\app\Files\FaceID\rorrim1234567890\user_photos\A1rNcfWsplVW6SeK2gdclDZC2R12" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SeungDae\PycharmProjects\SmartMirror_WebServer\app\Files\FaceID\rorrim1234567890\user_photos\Xrb4lbiAAeUTiyMndUC1eLQWsKI3" />
+      <recent name="C:\Users\SeungDae\PycharmProjects\SmartMirror_WebServer\app\Files" />
+      <recent name="C:\Users\SeungDae\PycharmProjects\SmartMirror_WebServer\app\Files\FaceID\rorrim1234567890\user_photos" />
+      <recent name="C:\Users\SeungDae\PycharmProjects\SmartMirror_WebServer\app\Files\FaceID" />
+      <recent name="C:\Users\SeungDae\PycharmProjects\SmartMirror_WebServer\app\Files\FaceID\rorrim1234567890" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.Main">
+    <configuration name="FaceID" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SmartMirror_WebServer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/FaceID.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SmartMirror_WebServer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/Main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SmartMirror_WebServer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="SmartMirror_WebServer" type="Python.FlaskServer" factoryName="Flask server">
+      <module name="SmartMirror_WebServer" />
+      <option name="target" value="$PROJECT_DIR$/app/__init__.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+    </configuration>
+    <list>
+      <item itemvalue="Flask server.SmartMirror_WebServer" />
+      <item itemvalue="Python.Main" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python.FaceID" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Main" />
+        <item itemvalue="Python.FaceID" />
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5bb83587-49ea-47b8-8119-7e0232a73da1" name="Default" comment="" />
+      <created>1528603285868</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1528603285868</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Login, Logout, Authenticate with Android and PI Complete">
+      <created>1528638656065</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1528638656065</updated>
+    </task>
+    <task id="LOCAL-00002" summary="send_image and save_image fixed">
+      <created>1528719587603</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1528719587603</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Music Complete">
+      <created>1528813071371</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1528813071371</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Finally finished everything!!!!!!!!!!1">
+      <created>1528823485355</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1528823485355</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1867" height="1096" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50249034" side_tool="true" weight="0.30407524" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3291536" />
+      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4980631" weight="0.3291536" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4975097" visible="true" weight="0.30407524" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4969563" weight="0.3291536" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19147758" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32982844" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3291536" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="0" weight="0.3291536" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4997233" weight="0.39916405" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Login, Logout, Authenticate with Android and PI Complete" />
+    <MESSAGE value="send_image and save_image fixed" />
+    <MESSAGE value="Music Complete" />
+    <MESSAGE value="Finally finished everything!!!!!!!!!!1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finally finished everything!!!!!!!!!!1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/FaceID.py</url>
+          <line>706</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/FaceID.py</url>
+          <line>705</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/FaceID.py</url>
+          <line>704</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/FaceID.py</url>
+          <line>1176</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="37" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="tf.gfile.Exists(self.FLAGS.summaries_dir)" language="Python" />
+        <watch expression="tf.gfile.DeleteRecursively(self.FLAGS.summaries_dir)" language="Python" />
+        <watch expression="shutil.rmtree(self.FLAGS.summaries_dir)" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>shutil.rmtree(self.FLAGS.summaries_dir)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>tf.gfile.DeleteRecursively(self.FLAGS.summaries_dir)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>tf.gile.Delete</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>tf.gfile.Exists(self.FLAGS.summaries_dir)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.FLAGS.summaries_dir</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.FLAGS.eval_step_interval</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>app.config['PROFILE_FOLDER'] +'//' + file_name</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>file_dir +'//'+file_name</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>app.config['PROFILE_FOLDER']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/site-packages/werkzeug/debug/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="287" selection-start-line="287" selection-end-line="287" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/http/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="417" selection-start-line="417" selection-end-line="417" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/site-packages/werkzeug/serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="292" selection-start-line="292" selection-end-line="292" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/socketserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="638" selection-start-line="638" selection-end-line="638" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="863" selection-start-line="863" selection-end-line="863" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/os.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="219" selection-start-line="219" selection-end-line="219" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/20170716_180005.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/20170811_103155.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/P20170505_233232000_733515A8-7FCC-47C6-B9F2-A259016A826E.JPG">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/baek/KakaoTalk_Moim_7uhhqIRHiqlS6aOhJM0uMZ6ySGneZX.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/baek/kakaoseungdae.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/baek/20180611_20-11-54.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/test12313.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/datetime.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="1371" column="38" selection-start-line="1371" selection-start-column="37" selection-end-line="1371" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/test12313.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/pi_connector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="29" column="35" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_20-17-06.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-22-25.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-17.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-32.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-20-26.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-20-05.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_20-17-45.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_20-29-50.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-25-47.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-56.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-24-39.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-25-04.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-40-46.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="113" column="65" lean-forward="true" selection-start-line="113" selection-start-column="65" selection-end-line="113" selection-end-column="65" />
+          <folding>
+            <element signature="e#1568#1606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-42-06.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-26-55.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-01-52.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-01-16.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-03-15.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-02-59.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-19-04.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-18-47.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-27-46.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/mangkyu.JPG">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/A1rNcfWsplVW6SeK2gdclDZC2R12_20180613_16-25-39.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/P20170725_150704397_632CC20E-CFDC-49A2-9D21-8D82FE9BD5F0.JPG">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/output_labels.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/2.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/PIL/Image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="59" column="10" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1030">
+          <caret line="210" column="49" selection-start-line="210" selection-start-column="49" selection-end-line="210" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180614_15-15-20.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/FaceID.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="1097" column="89" lean-forward="true" selection-start-line="1097" selection-start-column="89" selection-end-line="1097" selection-end-column="89" />
+          <folding>
+            <element signature="e#1933#1971#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
