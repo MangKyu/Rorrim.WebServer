@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bb83587-49ea-47b8-8119-7e0232a73da1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Jg3zb9D0TSZ4K1N2B2A6t8q0utp1/test.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/FaceID.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/FaceID.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pi_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/pi_connector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,7 +35,7 @@
       <file leaf-file-name="routes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1030">
+            <state relative-caret-position="3895">
               <caret line="210" column="49" selection-start-line="210" selection-start-column="49" selection-end-line="210" selection-end-column="49" />
               <folding>
                 <element signature="e#0#77#0" expanded="true" />
@@ -51,7 +47,7 @@
       <file leaf-file-name="Main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
+            <state relative-caret-position="380">
               <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
               <folding>
                 <element signature="e#0#63#0" expanded="true" />
@@ -63,7 +59,7 @@
       <file leaf-file-name="pi_connector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/pi_connector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
+            <state relative-caret-position="513">
               <caret line="29" column="35" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="35" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -75,8 +71,8 @@
       <file leaf-file-name="FaceID.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/FaceID.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="1097" column="89" lean-forward="true" selection-start-line="1097" selection-start-column="89" selection-end-line="1097" selection-end-column="89" />
+            <state relative-caret-position="584">
+              <caret line="1168" lean-forward="true" selection-start-line="1168" selection-end-line="1168" />
               <folding>
                 <element signature="e#1933#1971#0" expanded="true" />
               </folding>
@@ -208,16 +204,6 @@
               <item name="FaceID" type="462c0819:PsiDirectoryNode" />
               <item name="rorrim1234567890" type="462c0819:PsiDirectoryNode" />
               <item name="user_photos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartMirror_WebServer" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Files" type="462c0819:PsiDirectoryNode" />
-              <item name="FaceID" type="462c0819:PsiDirectoryNode" />
-              <item name="rorrim1234567890" type="462c0819:PsiDirectoryNode" />
-              <item name="user_photos" type="462c0819:PsiDirectoryNode" />
-              <item name="Xrb4lbiAAeUTiyMndUC1eLQWsKI3" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SmartMirror_WebServer" type="b2602c69:ProjectViewProjectNode" />
@@ -389,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528823485355</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="final commit">
+      <created>1529556029344</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1529556029344</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -400,15 +393,13 @@
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3291536" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4980631" weight="0.3291536" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4975097" visible="true" weight="0.30407524" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4975097" weight="0.30407524" />
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4969563" weight="0.3291536" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19147758" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1936912" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32982844" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3291536" />
       <window_info anchor="right" id="SciView" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="0" weight="0.3291536" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4997233" weight="0.39916405" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -417,6 +408,8 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3291536" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="0" weight="0.3291536" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +423,8 @@
     <MESSAGE value="send_image and save_image fixed" />
     <MESSAGE value="Music Complete" />
     <MESSAGE value="Finally finished everything!!!!!!!!!!1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finally finished everything!!!!!!!!!!1" />
+    <MESSAGE value="final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -561,15 +555,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/20170716_180005.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/20170811_103155.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/P20170505_233232000_733515A8-7FCC-47C6-B9F2-A259016A826E.JPG">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/20170716_180005.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/20170811_103155.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/P20170505_233232000_733515A8-7FCC-47C6-B9F2-A259016A826E.JPG" />
     <entry file="file://$PROJECT_DIR$/app/Files/baek/KakaoTalk_Moim_7uhhqIRHiqlS6aOhJM0uMZ6ySGneZX.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -592,12 +580,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/test12313.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/test12313.jpg" />
     <entry file="file://$PROJECT_DIR$/app/pi_connector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
+        <state relative-caret-position="513">
           <caret line="29" column="35" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="35" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -608,88 +594,33 @@
     <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_20-17-06.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-22-25.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-17.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-32.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-20-26.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-20-05.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_20-17-45.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-22-25.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-17.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-32.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-20-26.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-20-05.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_20-17-45.jpg" />
     <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_20-29-50.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-25-47.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-56.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-24-39.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-25-04.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-40-46.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="113" column="65" lean-forward="true" selection-start-line="113" selection-start-column="65" selection-end-line="113" selection-end-column="65" />
-          <folding>
-            <element signature="e#1568#1606#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-42-06.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-26-55.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-01-52.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-01-16.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-03-15.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-02-59.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-19-04.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-18-47.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-27-46.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/mangkyu.JPG">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/A1rNcfWsplVW6SeK2gdclDZC2R12_20180613_16-25-39.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/P20170725_150704397_632CC20E-CFDC-49A2-9D21-8D82FE9BD5F0.JPG">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-25-47.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-21-56.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-24-39.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-25-04.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-40-46.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/test.py" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-42-06.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-26-55.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-01-52.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-01-16.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-03-15.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-02-59.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-19-04.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_23-18-47.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/Xrb4lbiAAeUTiyMndUC1eLQWsKI3/Xrb4lbiAAeUTiyMndUC1eLQWsKI3_20180613_22-27-46.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/mangkyu.JPG" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/A1rNcfWsplVW6SeK2gdclDZC2R12_20180613_16-25-39.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/user_photos/A1rNcfWsplVW6SeK2gdclDZC2R12/P20170725_150704397_632CC20E-CFDC-49A2-9D21-8D82FE9BD5F0.JPG" />
     <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/output_labels.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -703,16 +634,10 @@
     <entry file="file://$PROJECT_DIR$/app/Files/FaceID/rorrim1234567890/test.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/PIL/Image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="59" column="10" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/SmartMirror_WebServer/Lib/PIL/Image.py" />
     <entry file="file://$PROJECT_DIR$/app/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
+        <state relative-caret-position="380">
           <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
           <folding>
             <element signature="e#0#63#0" expanded="true" />
@@ -722,7 +647,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1030">
+        <state relative-caret-position="3895">
           <caret line="210" column="49" selection-start-line="210" selection-start-column="49" selection-end-line="210" selection-end-column="49" />
           <folding>
             <element signature="e#0#77#0" expanded="true" />
@@ -735,8 +660,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/FaceID.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="1097" column="89" lean-forward="true" selection-start-line="1097" selection-start-column="89" selection-end-line="1097" selection-end-column="89" />
+        <state relative-caret-position="584">
+          <caret line="1168" lean-forward="true" selection-start-line="1168" selection-end-line="1168" />
           <folding>
             <element signature="e#1933#1971#0" expanded="true" />
           </folding>
